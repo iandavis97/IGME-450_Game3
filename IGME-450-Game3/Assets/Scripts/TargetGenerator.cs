@@ -21,6 +21,7 @@ public class TargetGenerator : MonoBehaviour
     {
         CreateTarget();
 
+        // assign values to the colliders for use lateer
         targetCollider = target.GetComponent<CircleCollider2D>();
         upperArmCollider = upperArm.GetComponent<BoxCollider2D>();
         lowerArmCollider = lowerArm.GetComponent<BoxCollider2D>();
@@ -31,13 +32,16 @@ public class TargetGenerator : MonoBehaviour
     {
         if (targetCollider.IsTouching(upperArmCollider))
         {
+            // destroy target on impact
             Destroy(target);
 
+            // make a new target and reassign targetCollider
             CreateTarget();
             targetCollider = target.GetComponent<CircleCollider2D>();
         }
         if (targetCollider.IsTouching(lowerArmCollider))
         {
+            // make this proc on both arms just in case
             Destroy(target);
 
             CreateTarget();
