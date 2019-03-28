@@ -37,13 +37,16 @@ public class PlayerControl : MonoBehaviour {
             Debug.Log("The " + elbowJoint.attachedRigidbody.name + " bone is connected to the " + elbowJoint.connectedBody.name + " bone");
         }
 	}
-	
-	// Update is called once per frame
-	void Update () {
-        //temporary input code until we have something
-        if (Input.GetKey(KeyCode.LeftArrow)) { upperArm.AddTorque(-5.0f); }
-        if (Input.GetKey(KeyCode.RightArrow)) { upperArm.AddTorque(5.0f); }
-        if (Input.GetKey(KeyCode.UpArrow)) { lowerArm.AddTorque(-5.0f); }
-        if (Input.GetKey(KeyCode.DownArrow)) { lowerArm.AddTorque(5.0f); }
+
+	// Adds torque to upper arm.
+	// param[torque] - amount of torque to add.
+	public void ControlUpperArm (float torque) {
+		upperArm.AddTorque(torque);
+	}
+
+	// Adds torque to lower arm.
+	// param[torque] - amount of torque to add.
+	public void ControlLowerArm (float torque) {
+		lowerArm.AddTorque(torque);
 	}
 }
