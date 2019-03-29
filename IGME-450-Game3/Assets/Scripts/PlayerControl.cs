@@ -14,13 +14,13 @@ using UnityEngine;
 public class PlayerControl : MonoBehaviour {
 
     public bool debug = true; //this is just to have an easy way to enable and disable a bunch of logging
-    [Header("Refrences To Joint Objects")]
+    [Header("References To Joint Objects")]
     public HingeJoint2D waistJoint;
     public HingeJoint2D neckJoint;
     public HingeJoint2D shoulderJoint;
     public HingeJoint2D elbowJoint;
 
-    [Header("Refrences To Body Parts")]
+    [Header("References To Body Parts")]
     public Rigidbody2D head;
     public Rigidbody2D torso;
     public Rigidbody2D upperArm;
@@ -49,4 +49,10 @@ public class PlayerControl : MonoBehaviour {
 	public void ControlLowerArm (float torque) {
 		lowerArm.AddTorque(torque);
 	}
+
+    // Moves Left/Right
+    public void Walk(float distance)
+    {
+        legs.transform.position = new Vector2(legs.transform.position.x + distance, legs.transform.position.y);
+    }
 }
