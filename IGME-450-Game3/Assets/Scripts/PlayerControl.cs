@@ -11,44 +11,136 @@ using UnityEngine;
  */
 
 
-public class PlayerControl : MonoBehaviour {
-
+public class PlayerControl : MonoBehaviour
+{
+    [Header("Debug")]
     public bool debug = true; //this is just to have an easy way to enable and disable a bunch of logging
-    [Header("References To Joint Objects")]
-    public HingeJoint2D waistJoint;
-    public HingeJoint2D neckJoint;
-    public HingeJoint2D shoulderJoint;
-    public HingeJoint2D elbowJoint;
 
-    [Header("References To Body Parts")]
-    public Rigidbody2D head;
-    public Rigidbody2D torso;
-    public Rigidbody2D upperArm;
-    public Rigidbody2D lowerArm;
-    public Rigidbody2D legs;
+    [Header("Body Parts")]
+    //gameobjects that the script will get rigidbody, joint, and collider info from
+    public GameObject head;
+    public GameObject torso;
+    public GameObject legs;
+    public GameObject upperArm;
+    public GameObject lowerArm;
 
-	// Use this for initialization
-	void Start () {
-        if (debug)
+    //refrences to joint objects
+    private HingeJoint2D waistJoint;
+    private HingeJoint2D neckJoint;
+    private HingeJoint2D shoulderJoint;
+    private HingeJoint2D elbowJoint;
+
+    //refrences to rigidbodies
+    private Rigidbody2D headRB;
+    private Rigidbody2D torsoRB;
+    private Rigidbody2D legsRB;
+    private Rigidbody2D upperArmRB;
+    private Rigidbody2D lowerArmRB;
+
+    //refrences to colliders
+    private BoxCollider2D headCollider;
+    private BoxCollider2D torsoCollider;
+    private BoxCollider2D legsCollider;
+    private BoxCollider2D upperArmCollider;
+    private BoxCollider2D lowerArmCollider;
+
+    // Use this for initialization
+    void Start()
+    {
+        GetAllComponentReferences();
+    }
+
+    //this method crawls through the public gameobject refrences and stores the rigidbodies, colliders, and joints for later use
+    private void GetAllComponentReferences()
+    {
+        if (debug) Debug.Log("Getting references to components...");
+
+        if (debug) Debug.Log("Getting references to Rigidbodies...");
+        headRB = GetRigidbodyReference(head);
+        torsoRB = GetRigidbodyReference(torso);
+        legsRB = GetRigidbodyReference(legs);
+        upperArmRB = GetRigidbodyReference(upperArm);
+        lowerArmRB = GetRigidbodyReference(lowerArm);
+
+        if (debug) Debug.Log("Getting references to Colliders...");
+        headCollider = GetColliderReference(head);
+        torsoCollider = GetColliderReference(torso);
+        legsCollider = GetColliderReference(legs);
+        upperArmCollider = GetColliderReference(upperArm);
+        lowerArmCollider = GetColliderReference(lowerArm);
+
+        if (debug) Debug.Log("Getting references to HingeJoints...");
+        GetJointReference(head);
+        GetJointReference(torso);
+        GetJointReference(legs);
+        GetJointReference(upperArm);
+        GetJointReference(lowerArm);
+    }
+
+    //returns the first rigidbody2d attached to a gameobject
+    private Rigidbody2D GetRigidbodyReference(GameObject GO)
+    {
+        if (debug) Debug.Log("Rigidbody2D found for " + GO.name);
+        return GO.GetComponent<Rigidbody2D>();
+    }
+
+    //returns the first boxcollider2d attached to a gameobject
+    private BoxCollider2D GetColliderReference(GameObject GO)
+    {
+        if (debug) Debug.Log("BoxCollider2d found for " + GO.name);
+        return GO.GetComponent<BoxCollider2D>();
+    }
+
+    //assigns the join references
+    private void GetJointReference(GameObject GO)
+    {
+        HingeJoint2D[] joints = GO.GetComponents<HingeJoint2D>();
+        foreach (HingeJoint2D j in joints)
         {
-            Debug.Log("The " + waistJoint.attachedRigidbody.name + " bone is connected to the " + waistJoint.connectedBody.name + " bone");
-            Debug.Log("The " + neckJoint.attachedRigidbody.name + " bone is connected to the " + neckJoint.connectedBody.name + " bone");
-            Debug.Log("The " + shoulderJoint.attachedRigidbody.name + " bone is connected to the " + shoulderJoint.connectedBody.name + " bone");
-            Debug.Log("The " + elbowJoint.attachedRigidbody.name + " bone is connected to the " + elbowJoint.connectedBody.name + " bone");
+            if (j.attachedRigidbody.name.ToLower() == "torso" && j.connectedBody.name.ToLower() == "head")
+            {
+                neckJoint = j;
+                if (debug) Debug.Log("The " + neckJoint.attachedRigidbody.name + " bone is connected to the " + neckJoint.connectedBody.name + " bone");
+            }
+            if (j.attachedRigidbody.name.ToLower() == "legs" && j.connectedBody.name.ToLower() == "torso")
+            {
+                waistJoint = j;
+                if (debug) Debug.Log("The " + waistJoint.attachedRigidbody.name + " bone is connected to the " + waistJoint.connectedBody.name + " bone");
+            }
+            if (j.attachedRigidbody.name.ToLower() == "torso" && j.connectedBody.name.ToLower() == "upper arm")
+            {
+                shoulderJoint = j;
+                if (debug) Debug.Log("The " + shoulderJoint.attachedRigidbody.name + " bone is connected to the " + shoulderJoint.connectedBody.name + " bone");
+            }
+            if (j.attachedRigidbody.name.ToLower() == "upper arm" && j.connectedBody.name.ToLower() == "lower arm")
+            {
+                elbowJoint = j;
+                if (debug) Debug.Log("The " + elbowJoint.attachedRigidbody.name + " bone is connected to the " + elbowJoint.connectedBody.name + " bone");
+            }
         }
-	}
+    }
 
-	// Adds torque to upper arm.
-	// param[torque] - amount of torque to add.
-	public void ControlUpperArm (float torque) {
-		upperArm.AddTorque(torque);
-	}
+    private void Update()
+    {
+        //if(Input.GetKey(KeyCode.LeftArrow)) { ControlUpperArm(5.0f); }
+        //if(Input.GetKey(KeyCode.RightArrow)) { ControlUpperArm(-5.0f); }
+        //if(Input.GetKey(KeyCode.UpArrow)) { ControlLowerArm(5.0f); }
+        //if(Input.GetKey(KeyCode.DownArrow)) { ControlLowerArm(-5.0f); }
+    }
 
-	// Adds torque to lower arm.
-	// param[torque] - amount of torque to add.
-	public void ControlLowerArm (float torque) {
-		lowerArm.AddTorque(torque);
-	}
+    // Adds torque to upper arm.
+    // param[torque] - amount of torque to add.
+    public void ControlUpperArm(float torque)
+    {
+        upperArmRB.AddTorque(torque);
+    }
+
+    // Adds torque to lower arm.
+    // param[torque] - amount of torque to add.
+    public void ControlLowerArm(float torque)
+    {
+        lowerArmRB.AddTorque(torque);
+    }
 
     // Moves Left/Right
     public void Walk(float distance)
