@@ -8,6 +8,9 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/SampleScene.unity
     guid: 2cda990e2423bbf4892e6590ba056729
+  - enabled: 1
+    path: Assets/Scenes/MainMenu.unity
+    guid: f6d42ce3a8f24eb48b68883118838511
   - enabled: 0
     path: 
     guid: 00000000000000000000000000000000
@@ -20,10 +23,16 @@ EditorBuildSettings:
   - enabled: 0
     path: 
     guid: 00000000000000000000000000000000
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
   - enabled: 1
-    path: Assets/Scenes/MainMenu.unity
-    guid: 88c8e6db4df861d4b9feb1f4fef475c2
+    path: Assets/Scenes/loss.unity
+    guid: 3997e6ee62c53b8479437bd890d73235
   - enabled: 1
     path: Assets/Scenes/TargetPractice.unity
-    guid: 8f9c21910ff75134daefb727f0a538f5
+    guid: 2bb8e72689aee0d49b5c0ed975d1a5b2
   m_configObjects: {}
