@@ -7,6 +7,8 @@ public class InputManager : MonoBehaviour {
 
 	// Controls for player 1 and 2.
 	public KeyCode p1upArmAdd, p1upArmSub, p1loArmAdd, p1loArmSub, p1Left, p1Right, p2upArmAdd, p2upArmSub, p2loArmAdd, p2loArmSub, p2Left, p2Right;
+	[SerializeField]
+	public float p1upArmSubf, p1loArmSubf, p1leftRight, p2upArmSubf, p2loArmSubf, p2leftRight; // Use floats to express axis-based input.
 	public PlayerControl p1, p2; // PlayerControl objects for respective players.
 
 	private Text controls; // Text on the UI that prints out the controls.
@@ -19,6 +21,15 @@ public class InputManager : MonoBehaviour {
     private void Awake() {
     	controls = Transform.FindObjectOfType<Text>();
     	// #TODO Xbox Controller support
+    	string[] joysticks = Input.GetJoystickNames();
+    	if (joysticks.Length > 0) { // There are joysticks connected, so assign buttons accordingly.
+    		p1upArmAdd = KeyCode.Joystick1Button4;
+			p1loArmAdd = KeyCode.Joystick1Button5;
+			if (joysticks.Length > 1) { // Connect the second joystick.
+				p2upArmAdd = KeyCode.Joystick2Button4;
+				p2loArmAdd = KeyCode.Joystick2Button5;
+			}
+    	}
     }
 
     // Displays controls to the user.
@@ -30,25 +41,43 @@ public class InputManager : MonoBehaviour {
     }
 
 	private void Update () {
+		// For controllers, read the axis-based input.
+		p1upArmSubf = Input.GetAxis("P1Fire1");
+		p1loArmSubf = Input.GetAxis("P1Fire2");
+		p1leftRight = Input.GetAxis("P1X");
+		p2upArmSubf = Input.GetAxis("P2Fire1");
+		p2loArmSubf = Input.GetAxis("P2Fire2");
+		p2leftRight = Input.GetAxis("P2X");
 		// Player 1 Controls.
 		if (Input.GetKey(p1upArmAdd)) {
 			p1.ControlUpperArm(torque);
-		} else if (Input.GetKey(p1upArmSub)) {
+		} else if (Input.GetKey(p1upArmSub) || p1upArmSubf != 0) {
 			p1.ControlUpperArm(-torque);
 		}
 		if (Input.GetKey(p1loArmAdd)) {
 			p1.ControlLowerArm(torque);
-		} else if (Input.GetKey(p1loArmSub)) {
+		} else if (Input.GetKey(p1loArmSub) || p1loArmSubf != 0) {
 			p1.ControlLowerArm(-torque);
 		}
-        if (Input.GetKey(p1Left)) {
+        if (Input.GetKey(p1Left) || p1leftRight < 0) {
             p1.Walk(-distance);
-        } else if (Input.GetKey(p1Right)) {
+		} else if (Input.GetKey(p1Right) || p1leftRight > 0) {
             p1.Walk(distance);
         }
-        if (Input.GetKey(p2Left)) {
+		// Player 2 Controls.
+		if (Input.GetKey(p2upArmAdd)) {
+			p2.ControlUpperArm(torque);
+		} else if (Input.GetKey(p2upArmSub) || p2upArmSubf != 0) {
+			p2.ControlUpperArm(-torque);
+		}
+		if (Input.GetKey(p2loArmAdd)) {
+			p2.ControlLowerArm(torque);
+		} else if (Input.GetKey(p2loArmSub) || p2loArmSubf != 0) {
+			p2.ControlLowerArm(-torque);
+		}
+        if (Input.GetKey(p2Left) || p2leftRight < 0) {
             p2.Walk(-distance);
-        } else if (Input.GetKey(p2Right)) {
+		} else if (Input.GetKey(p2Right) || p2leftRight > 0) {
             p2.Walk(distance);
         }
 	}
