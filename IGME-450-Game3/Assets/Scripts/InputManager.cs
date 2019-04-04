@@ -14,7 +14,7 @@ public class InputManager : MonoBehaviour {
 	private Text controls; // Text on the UI that prints out the controls.
 
 	private float torque = 5.0f; // Amount of torque to add to joints.
-    private float distance = 0.05f; // Distance to move on walk
+    private float distance = 1.5f; // Distance to move on walk
     private int numjoysticks = 0; // The number of connected joysticks.
 
     // Grab a reference to the text piece for controls.

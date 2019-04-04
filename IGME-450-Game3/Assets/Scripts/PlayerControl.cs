@@ -53,23 +53,21 @@ public class PlayerControl : MonoBehaviour
     //this method crawls through the public gameobject refrences and stores the rigidbodies, colliders, and joints for later use
     private void GetAllComponentReferences()
     {
-        if (debug) Debug.Log("Getting references to components...");
-
-        if (debug) Debug.Log("Getting references to Rigidbodies...");
+        //get refrences to RBs
         headRB = GetRigidbodyReference(head);
         torsoRB = GetRigidbodyReference(torso);
         legsRB = GetRigidbodyReference(legs);
         upperArmRB = GetRigidbodyReference(upperArm);
         lowerArmRB = GetRigidbodyReference(lowerArm);
 
-        if (debug) Debug.Log("Getting references to Colliders...");
+        //get refrences to colliders
         headCollider = GetColliderReference(head);
         torsoCollider = GetColliderReference(torso);
         legsCollider = GetColliderReference(legs);
         upperArmCollider = GetColliderReference(upperArm);
         lowerArmCollider = GetColliderReference(lowerArm);
 
-        if (debug) Debug.Log("Getting references to HingeJoints...");
+        //get refrences to joints
         GetJointReference(head);
         GetJointReference(torso);
         GetJointReference(legs);
@@ -143,8 +141,45 @@ public class PlayerControl : MonoBehaviour
     }
 
     // Moves Left/Right
-    public void Walk(float distance)
+    public void Walk(float force)
     {
-        legs.transform.position = new Vector2(legs.transform.position.x + distance, legs.transform.position.y);
+        legsRB.AddForce(new Vector2(force, 0),ForceMode2D.Impulse);
+    }
+
+    //this method is called whenever a body part impacts the other player
+    //the object of the player doing the hitting = gameObject
+    //the name of the player doing the hitting = gameObject.name
+    //the object of the body part doing the hitting = bodyPart
+    //the name of the bodypart doing the hitting = bodyPart.name
+
+    //the object of the player being hit = collision.gameObject.transform.parent
+    //the name of the player being hit = collision.gameObject.transform.parent.name
+    //the object of the body being hit = collision.gameObject
+    //the name of the bodypart being hit = collision.gameObject.name
+    public void ChildCollisionEntered(Collision2D collision, GameObject bodyPart)
+    {
+        //this line just logs the collision to the console
+        if (debug) Debug.Log(gameObject.name + "'s " + bodyPart.name + " has collided with " + collision.gameObject.transform.parent.name + "'s " + collision.gameObject.name);
+
+        //this check is for determining which object is moving faster and will only run on the object impacting with more force
+        if(GetImpactingObject(bodyPart,collision.gameObject))
+        {
+            //process collsion here, including calling any score adding methods
+        }
+    }
+
+    //this method is to help collision resolution by determining which object is going faster, and is therefore the object doing the striking
+    //returns true if the current gameobject is moving faster than the impacted gameobject
+    private bool GetImpactingObject(GameObject current, GameObject target)
+    {
+        if (current.GetComponent<Rigidbody2D>().velocity.sqrMagnitude > target.GetComponent<Rigidbody2D>().velocity.sqrMagnitude)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+
     }
 }

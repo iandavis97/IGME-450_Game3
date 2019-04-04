@@ -5,6 +5,11 @@ TagManager:
   serializedVersion: 2
   tags:
   - Target
+  - Head
+  - Torso
+  - Legs
+  - Upper Arm
+  - Lower Arm
   layers:
   - Default
   - TransparentFX

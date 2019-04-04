@@ -2,31 +2,26 @@
 using System.Collections.Generic;
 using UnityEngine;
 /*
- * attach this script to any object with a rigidbody that you want a non standard center of mass on
- * currently doesnt work as intended
+ * attach this script to the child objects to detecct their collisions in the parent script
  */
 
 [RequireComponent(typeof(Rigidbody2D))]
 public class CustomRigidbody : MonoBehaviour {
 
-    public Vector3 centerOfMass;
-    public float drawSize = 0.01f;
-    private Rigidbody2D myRigidbody;
+    public PlayerControl player;
 
 	// Use this for initialization
 	void Start () {
-        myRigidbody = GetComponent<Rigidbody2D>();
-        centerOfMass = myRigidbody.centerOfMass;
+        if (!player) Debug.LogError(gameObject.name + "Does not have a player control obejct attached and will not register collisions");
 	}
 	
 	// Update is called once per frame
-	void Update () {
-        myRigidbody.centerOfMass = centerOfMass;
-	}
+	void Update () {}
 
-    private void OnDrawGizmos()
+    //this method passes the collision2d object as well as the gameobject the script is attached to, to the parent object
+    //its purpose is only to pass this data and the parent, PlayerControl object will do all of the processing with it
+    private void OnCollisionEnter2D(Collision2D collision)
     {
-        Gizmos.color = Color.white;
-        Gizmos.DrawSphere(centerOfMass, drawSize);
+        player.ChildCollisionEntered(collision, gameObject);
     }
 }
