@@ -15,6 +15,7 @@ public class TargetGenerator : MonoBehaviour
     private CircleCollider2D targetCollider;
     private BoxCollider2D upperArmCollider;
     private BoxCollider2D lowerArmCollider;
+    AudioSource sfx;
 
     // Use this for initialization
     void Start()
@@ -25,6 +26,9 @@ public class TargetGenerator : MonoBehaviour
         targetCollider = target.GetComponent<CircleCollider2D>();
         upperArmCollider = upperArm.GetComponent<BoxCollider2D>();
         lowerArmCollider = lowerArm.GetComponent<BoxCollider2D>();
+
+        //setting up sound effects
+        sfx = GetComponent<AudioSource>();
     }
 	
 	// Update is called once per frame
@@ -35,6 +39,9 @@ public class TargetGenerator : MonoBehaviour
             // destroy target on impact
             Destroy(target);
 
+            //play paper hit sound effect
+            if (sfx.isPlaying == false)
+                sfx.Play();
             // make a new target and reassign targetCollider
             CreateTarget();
             targetCollider = target.GetComponent<CircleCollider2D>();
@@ -44,6 +51,9 @@ public class TargetGenerator : MonoBehaviour
             // make this proc on both arms just in case
             Destroy(target);
 
+            //play paper hit sound effect
+            if (sfx.isPlaying == false)
+                sfx.Play();
             CreateTarget();
             targetCollider = target.GetComponent<CircleCollider2D>();
         }
