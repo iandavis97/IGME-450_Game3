@@ -170,7 +170,7 @@ public class PlayerControl : MonoBehaviour
         }
 
         //playing sfx when hit
-        if (sfx.isPlaying)
+        if (!sfx.isPlaying)
             sfx.Play();
     }
 

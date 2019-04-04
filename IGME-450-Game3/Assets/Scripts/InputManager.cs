@@ -40,17 +40,17 @@ public class InputManager : MonoBehaviour {
     	if (numjoysticks <= 0) { // No joysticks
 			controls.text = "Player 1";
 			controls.text += ControlString(p1upArmAdd, p1upArmSub, p1loArmAdd, p1loArmSub, p1Left, p1Right);
-			controls.text += "\nPlayer 2";
+			controls.text += "\n\nPlayer 2";
 			controls.text += ControlString(p2upArmAdd, p2upArmSub, p2loArmAdd, p2loArmSub, p2Left, p2Right);
 		} else if (numjoysticks == 1) { // One joystick
 			controls.text = "Player 1";
 			controls.text += ControlStringJS("LB", "LT", "RB", "RT");
-			controls.text += "\nPlayer 2";
+			controls.text += "\n\nPlayer 2";
 			controls.text += ControlString(p2upArmAdd, p2upArmSub, p2loArmAdd, p2loArmSub, p2Left, p2Right);
     	} else if (numjoysticks == 2) { // Two joysticks
 			controls.text = "Player 1";
 			controls.text += ControlStringJS("LB", "LT", "RB", "RT");
-			controls.text = "Player 2";
+			controls.text = "\n\nPlayer 2";
 			controls.text += ControlStringJS("LB", "LT", "RB", "RT");
     	}
     }
