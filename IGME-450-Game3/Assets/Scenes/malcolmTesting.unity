@@ -938,10 +938,10 @@ HingeJoint2D:
   m_Motor:
     m_MotorSpeed: 0
     m_MaximumMotorForce: 10000
-  m_UseLimits: 0
+  m_UseLimits: 1
   m_AngleLimits:
-    m_LowerAngle: -3
-    m_UpperAngle: 3
+    m_LowerAngle: -60
+    m_UpperAngle: 60
 --- !u!233 &1410801511
 HingeJoint2D:
   m_ObjectHideFlags: 0
@@ -1085,10 +1085,10 @@ SpringJoint2D:
   m_AutoConfigureConnectedAnchor: 0
   m_Anchor: {x: -0.25, y: 0.47}
   m_ConnectedAnchor: {x: -0.25, y: -0.47}
-  m_AutoConfigureDistance: 0
-  m_Distance: 0.03
-  m_DampingRatio: 0
-  m_Frequency: 1
+  m_AutoConfigureDistance: 1
+  m_Distance: 0.045000076
+  m_DampingRatio: 0.3
+  m_Frequency: 2.75
 --- !u!231 &1410801517
 SpringJoint2D:
   m_ObjectHideFlags: 0
@@ -1104,10 +1104,10 @@ SpringJoint2D:
   m_AutoConfigureConnectedAnchor: 0
   m_Anchor: {x: 0.25, y: 0.47}
   m_ConnectedAnchor: {x: 0.25, y: -0.47}
-  m_AutoConfigureDistance: 0
-  m_Distance: 0.03
-  m_DampingRatio: 0
-  m_Frequency: 1
+  m_AutoConfigureDistance: 1
+  m_Distance: 0.045000076
+  m_DampingRatio: 0.3
+  m_Frequency: 2.75
 --- !u!1 &1564081992
 GameObject:
   m_ObjectHideFlags: 0
