@@ -12,7 +12,7 @@ public class CustomRigidbody : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        if (!player) Debug.LogError(gameObject.name + "Does not have a player control obejct attached and will not register collisions");
+        if (!player) Debug.LogError(gameObject.name + "Does not have a player control obeject attached and will not register collisions");
 	}
 	
 	// Update is called once per frame

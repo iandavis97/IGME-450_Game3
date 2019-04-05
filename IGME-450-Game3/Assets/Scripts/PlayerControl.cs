@@ -44,10 +44,12 @@ public class PlayerControl : MonoBehaviour
     private BoxCollider2D upperArmCollider;
     private BoxCollider2D lowerArmCollider;
 
+    AudioSource sfx;
     // Use this for initialization
     void Start()
     {
         GetAllComponentReferences();
+        sfx = GetComponent<AudioSource>();
     }
 
     //this method crawls through the public gameobject refrences and stores the rigidbodies, colliders, and joints for later use
@@ -166,6 +168,10 @@ public class PlayerControl : MonoBehaviour
         {
             //process collsion here, including calling any score adding methods
         }
+
+        //playing sfx when hit
+        if (!sfx.isPlaying)
+            sfx.Play();
     }
 
     //this method is to help collision resolution by determining which object is going faster, and is therefore the object doing the striking
@@ -174,11 +180,11 @@ public class PlayerControl : MonoBehaviour
     {
         if (current.GetComponent<Rigidbody2D>().velocity.sqrMagnitude > target.GetComponent<Rigidbody2D>().velocity.sqrMagnitude)
         {
-            return true;
+            return false;
         }
         else
         {
-            return false;
+            return true;
         }
 
     }
