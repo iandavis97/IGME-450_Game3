@@ -535,6 +535,16 @@ Prefab:
       propertyPath: m_Name
       value: Player 1
       objectReference: {fileID: 0}
+    - target: {fileID: 233389356402082462, guid: d5229eab744c6024e9d7ed9e7fdf14b4,
+        type: 2}
+      propertyPath: m_ConnectedAnchor.y
+      value: 0.33935764
+      objectReference: {fileID: 0}
+    - target: {fileID: 233956682879153396, guid: d5229eab744c6024e9d7ed9e7fdf14b4,
+        type: 2}
+      propertyPath: m_ConnectedAnchor.x
+      value: 0.026000023
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d5229eab744c6024e9d7ed9e7fdf14b4, type: 2}
   m_IsPrefabAsset: 0
@@ -1088,7 +1098,7 @@ SpringJoint2D:
   m_AutoConfigureDistance: 1
   m_Distance: 0.045000076
   m_DampingRatio: 0.3
-  m_Frequency: 2.75
+  m_Frequency: 3
 --- !u!231 &1410801517
 SpringJoint2D:
   m_ObjectHideFlags: 0
@@ -1107,7 +1117,7 @@ SpringJoint2D:
   m_AutoConfigureDistance: 1
   m_Distance: 0.045000076
   m_DampingRatio: 0.3
-  m_Frequency: 2.75
+  m_Frequency: 3
 --- !u!1 &1564081992
 GameObject:
   m_ObjectHideFlags: 0
