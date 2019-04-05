@@ -184,7 +184,7 @@ Prefab:
         type: 2}
       propertyPath: m_audioClip
       value: 
-      objectReference: {fileID: 8300000, guid: cd3281656f920f8438fc0c606853d5c3, type: 3}
+      objectReference: {fileID: 8300000, guid: 34b3acb98c3e96849b97a7f2f3fce398, type: 3}
     - target: {fileID: 233956682879153396, guid: d5229eab744c6024e9d7ed9e7fdf14b4,
         type: 2}
       propertyPath: m_ConnectedAnchor.x
@@ -656,7 +656,7 @@ Prefab:
         type: 2}
       propertyPath: m_audioClip
       value: 
-      objectReference: {fileID: 8300000, guid: a1ba9db78143a0343b8971fbc72d4d88, type: 3}
+      objectReference: {fileID: 8300000, guid: 34b3acb98c3e96849b97a7f2f3fce398, type: 3}
     - target: {fileID: 233777752595242624, guid: d5229eab744c6024e9d7ed9e7fdf14b4,
         type: 2}
       propertyPath: m_ConnectedAnchor.x
