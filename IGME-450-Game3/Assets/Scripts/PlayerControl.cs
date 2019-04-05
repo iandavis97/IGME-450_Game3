@@ -180,11 +180,11 @@ public class PlayerControl : MonoBehaviour
     {
         if (current.GetComponent<Rigidbody2D>().velocity.sqrMagnitude > target.GetComponent<Rigidbody2D>().velocity.sqrMagnitude)
         {
-            return true;
+            return false;
         }
         else
         {
-            return false;
+            return true;
         }
 
     }
