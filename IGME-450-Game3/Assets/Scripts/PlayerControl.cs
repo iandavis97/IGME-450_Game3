@@ -170,8 +170,10 @@ public class PlayerControl : MonoBehaviour
         }
 
         //playing sfx when hit
-        if (!sfx.isPlaying)
+        if (!sfx.isPlaying) {
+        	sfx.pitch = Random.Range(-0.5f, 1f);
             sfx.Play();
+        }
     }
 
     //this method is to help collision resolution by determining which object is going faster, and is therefore the object doing the striking

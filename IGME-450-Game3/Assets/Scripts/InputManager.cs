@@ -48,9 +48,7 @@ public class InputManager : MonoBehaviour {
 			controls.text += "\n\nPlayer 2";
 			controls.text += ControlString(p2upArmAdd, p2upArmSub, p2loArmAdd, p2loArmSub, p2Left, p2Right);
     	} else if (numjoysticks == 2) { // Two joysticks
-			controls.text = "Player 1";
-			controls.text += ControlStringJS("LB", "LT", "RB", "RT");
-			controls.text = "\n\nPlayer 2";
+			controls.text = "Controls";
 			controls.text += ControlStringJS("LB", "LT", "RB", "RT");
     	}
     }
@@ -62,7 +60,7 @@ public class InputManager : MonoBehaviour {
 		p1leftRight = Input.GetAxis("P1X");
 		p2upArmSubf = Input.GetAxis("P2Fire1");
 		p2loArmSubf = Input.GetAxis("P2Fire2");
-		p2leftRight = Input.GetAxis("P2X");
+		p2leftRight = -Input.GetAxis("P2X"); // Inverted due to -x scale
 		// Player 1 Controls.
 		if (Input.GetKey(p1upArmAdd)) {
 			p1.ControlUpperArm(torque);
