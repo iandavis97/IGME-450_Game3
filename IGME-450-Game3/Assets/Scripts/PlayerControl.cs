@@ -164,9 +164,16 @@ public class PlayerControl : MonoBehaviour
         if (debug) Debug.Log(gameObject.name + "'s " + bodyPart.name + " has collided with " + collision.gameObject.transform.parent.name + "'s " + collision.gameObject.name);
 
         //this check is for determining which object is moving faster and will only run on the object impacting with more force
-        if(GetImpactingObject(bodyPart,collision.gameObject))
+        if(GetImpactingObject(bodyPart,collision.gameObject) && !bodyPart.gameObject.CompareTag("Ground") && !collision.gameObject.CompareTag("Ground"))
         {
             //process collsion here, including calling any score adding methods
+            StartCoroutine(collision.gameObject.GetComponent<CustomRigidbody>().flash()); // causes the hit body part to flash red, flash is a coroutine in Custom Rigidbody
+            if(bodyPart.gameObject.CompareTag("Lower Arm"))
+            {
+                collision.gameObject.GetComponent<Rigidbody2D>().AddForce(bodyPart.GetComponent<Rigidbody2D>().velocity * 5.0f, ForceMode2D.Impulse); //gives hits some oompf
+            }
+            
+            //Debug.Log("calling flash on " + collision.gameObject.name);
         }
 
         //playing sfx when hit
@@ -182,12 +189,13 @@ public class PlayerControl : MonoBehaviour
     {
         if (current.GetComponent<Rigidbody2D>().velocity.sqrMagnitude > target.GetComponent<Rigidbody2D>().velocity.sqrMagnitude)
         {
-            return false;
+            return true;
         }
         else
         {
-            return true;
+            return false;
         }
 
     }
+
 }

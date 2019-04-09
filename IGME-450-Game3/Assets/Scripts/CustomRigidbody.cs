@@ -24,4 +24,12 @@ public class CustomRigidbody : MonoBehaviour {
     {
         player.ChildCollisionEntered(collision, gameObject);
     }
+
+    public IEnumerator flash()
+    {
+        gameObject.GetComponent<SpriteRenderer>().color = Color.red;
+        yield return new WaitForSeconds(0.15f);
+        gameObject.GetComponent<SpriteRenderer>().color = Color.white;
+        yield return new WaitForSeconds(0.1f);
+    }
 }
