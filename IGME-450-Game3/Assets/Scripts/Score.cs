@@ -5,8 +5,8 @@ using UnityEngine;
 public class Score : MonoBehaviour
 {
     public static Score instance = null;
-    public static int p1Score;
-    public static int p2Score;
+    public static float p1Score;
+    public static float p2Score;
 
     // Use this for initialization
     void Awake()

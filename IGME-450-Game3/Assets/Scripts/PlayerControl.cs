@@ -167,12 +167,29 @@ public class PlayerControl : MonoBehaviour
         if(GetImpactingObject(bodyPart,collision.gameObject) && !bodyPart.gameObject.CompareTag("Ground") && !collision.gameObject.CompareTag("Ground"))
         {
             //process collsion here, including calling any score adding methods
+
+            //checking which player is getting hit, and then increase score of other player
+            if (collision.gameObject.transform.parent.name == "Player Two")
+            {
+                //checking which body part hit
+                if(collision.gameObject.name=="Torso")
+                    Score.IncreaseP1Score(1);
+                if (collision.gameObject.name == "Head")
+                    Score.IncreaseP1Score(5);
+            }
+            if (collision.gameObject.transform.parent.name == "Player One")
+            {
+                //checking which body part hit
+                if (collision.gameObject.name == "Torso")
+                    Score.IncreaseP2Score(1);
+                if (collision.gameObject.name == "Head")
+                    Score.IncreaseP2Score(5);
+            }
             StartCoroutine(collision.gameObject.GetComponent<CustomRigidbody>().flash()); // causes the hit body part to flash red, flash is a coroutine in Custom Rigidbody
             if(bodyPart.gameObject.CompareTag("Lower Arm"))
             {
                 collision.gameObject.GetComponent<Rigidbody2D>().AddForce(bodyPart.GetComponent<Rigidbody2D>().velocity * 5.0f, ForceMode2D.Impulse); //gives hits some oompf
             }
-            
             //Debug.Log("calling flash on " + collision.gameObject.name);
         }
 

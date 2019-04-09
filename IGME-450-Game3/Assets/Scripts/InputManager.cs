@@ -12,8 +12,13 @@ public class InputManager : MonoBehaviour {
 	public PlayerControl p1, p2; // PlayerControl objects for respective players.
 
 	private Text controls; // Text on the UI that prints out the controls.
+    public Text p1ScoreText;//Text on UI that prints player 1's score
+    public Text p2ScoreText;//Text on UI that prints player 2's score
 
-	private float torque = 5.0f; // Amount of torque to add to joints.
+    public float p1Score;
+    public float p2Score;
+
+    private float torque = 5.0f; // Amount of torque to add to joints.
     private float distance = 1.5f; // Distance to move on walk
     private int numjoysticks = 0; // The number of connected joysticks.
 
@@ -51,6 +56,8 @@ public class InputManager : MonoBehaviour {
 			controls.text = "Controls";
 			controls.text += ControlStringJS("LB", "LT", "RB", "RT");
     	}
+
+        
     }
 
 	private void Update () {
@@ -93,7 +100,15 @@ public class InputManager : MonoBehaviour {
 		} else if (Input.GetKey(p2Right) || p2leftRight > 0) {
             p2.Walk(distance);
         }
-	}
+
+        //updating score
+        p1Score = Score.p1Score;
+        p2Score = Score.p2Score;
+
+        //display score to user
+        p1ScoreText.text = p1Score.ToString();
+        p2ScoreText.text = p2Score.ToString();
+    }
 
 	/** Helper function that builds a string of the keycodes required to control the player.
 	 * param[upArmAdd, upArmSub, loArmAdd, loArmSub, left, right] - keycodes for a player's movement.
