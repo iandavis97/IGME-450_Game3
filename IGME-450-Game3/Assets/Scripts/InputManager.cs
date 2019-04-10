@@ -11,7 +11,7 @@ public class InputManager : MonoBehaviour {
 	public float p1upArmSubf, p1loArmSubf, p1leftRight, p2upArmSubf, p2loArmSubf, p2leftRight; // Use floats to express axis-based input.
 	public PlayerControl p1, p2; // PlayerControl objects for respective players.
 
-	private Text controls; // Text on the UI that prints out the controls.
+	public Text controls; // Text on the UI that prints out the controls.
     public Text p1ScoreText;//Text on UI that prints player 1's score
     public Text p2ScoreText;//Text on UI that prints player 2's score
 
@@ -25,7 +25,6 @@ public class InputManager : MonoBehaviour {
     // Grab a reference to the text piece for controls.
     // If Xbox One controller(s) are connected, detect them and override the keyboard controls.
     private void Awake() {
-    	controls = Transform.FindObjectOfType<Text>();
     	// #TODO Xbox Controller support
     	string[] joysticks = Input.GetJoystickNames();
     	if (joysticks.Length > 0) { // There are joysticks connected, so assign buttons accordingly.
