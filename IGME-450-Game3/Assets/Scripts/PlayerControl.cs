@@ -188,7 +188,9 @@ public class PlayerControl : MonoBehaviour
             StartCoroutine(collision.gameObject.GetComponent<CustomRigidbody>().flash()); // causes the hit body part to flash red, flash is a coroutine in Custom Rigidbody
             if(bodyPart.gameObject.CompareTag("Lower Arm"))
             {
-                collision.gameObject.GetComponent<Rigidbody2D>().AddForce(bodyPart.GetComponent<Rigidbody2D>().velocity * 5.0f, ForceMode2D.Impulse); //gives hits some oompf
+                Vector2 impactForce = bodyPart.GetComponent<Rigidbody2D>().velocity * 7.0f;
+                impactForce = Vector2.ClampMagnitude(impactForce, 70.0f);
+                collision.gameObject.GetComponent<Rigidbody2D>().AddForce(impactForce, ForceMode2D.Impulse); //gives hits some oompf
             }
             //Debug.Log("calling flash on " + collision.gameObject.name);
         }
