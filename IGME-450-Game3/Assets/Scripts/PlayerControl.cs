@@ -164,14 +164,40 @@ public class PlayerControl : MonoBehaviour
         if (debug) Debug.Log(gameObject.name + "'s " + bodyPart.name + " has collided with " + collision.gameObject.transform.parent.name + "'s " + collision.gameObject.name);
 
         //this check is for determining which object is moving faster and will only run on the object impacting with more force
-        if(GetImpactingObject(bodyPart,collision.gameObject))
+        if(GetImpactingObject(bodyPart,collision.gameObject) && !bodyPart.gameObject.CompareTag("Ground") && !collision.gameObject.CompareTag("Ground"))
         {
             //process collsion here, including calling any score adding methods
+
+            //checking which player is getting hit, and then increase score of other player
+            if (collision.gameObject.transform.parent.name == "Player Two")
+            {
+                //checking which body part hit
+                if(collision.gameObject.name=="Torso")
+                    Score.IncreaseP1Score(1);
+                if (collision.gameObject.name == "Head")
+                    Score.IncreaseP1Score(5);
+            }
+            if (collision.gameObject.transform.parent.name == "Player One")
+            {
+                //checking which body part hit
+                if (collision.gameObject.name == "Torso")
+                    Score.IncreaseP2Score(1);
+                if (collision.gameObject.name == "Head")
+                    Score.IncreaseP2Score(5);
+            }
+            StartCoroutine(collision.gameObject.GetComponent<CustomRigidbody>().flash()); // causes the hit body part to flash red, flash is a coroutine in Custom Rigidbody
+            if(bodyPart.gameObject.CompareTag("Lower Arm"))
+            {
+                collision.gameObject.GetComponent<Rigidbody2D>().AddForce(bodyPart.GetComponent<Rigidbody2D>().velocity * 5.0f, ForceMode2D.Impulse); //gives hits some oompf
+            }
+            //Debug.Log("calling flash on " + collision.gameObject.name);
         }
 
         //playing sfx when hit
-        if (!sfx.isPlaying)
+        if (!sfx.isPlaying) {
+        	sfx.pitch = Random.Range(-0.5f, 1f);
             sfx.Play();
+        }
     }
 
     //this method is to help collision resolution by determining which object is going faster, and is therefore the object doing the striking
@@ -180,12 +206,13 @@ public class PlayerControl : MonoBehaviour
     {
         if (current.GetComponent<Rigidbody2D>().velocity.sqrMagnitude > target.GetComponent<Rigidbody2D>().velocity.sqrMagnitude)
         {
-            return false;
+            return true;
         }
         else
         {
-            return true;
+            return false;
         }
 
     }
+
 }

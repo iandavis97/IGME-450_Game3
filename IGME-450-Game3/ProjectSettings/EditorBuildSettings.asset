@@ -8,34 +8,22 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/SampleScene.unity
     guid: 2cda990e2423bbf4892e6590ba056729
-  - enabled: 1
-    path: Assets/Scenes/MainMenu.unity
-    guid: f6d42ce3a8f24eb48b68883118838511
-  - enabled: 0
-    path: 
-    guid: 00000000000000000000000000000000
   - enabled: 0
     path: Assets/Scenes/malcolmTesting.unity
     guid: 99f4d5ec1ac0e6446bd45091b906fee3
-  - enabled: 0
-    path: 
-    guid: 00000000000000000000000000000000
-  - enabled: 0
-    path: 
-    guid: 00000000000000000000000000000000
+  - enabled: 1
+    path: Assets/Scenes/MainMenu.unity
+    guid: 41d951134238c5244aa4d29f2bb5b8a6
   - enabled: 0
     path: 
     guid: 00000000000000000000000000000000
   - enabled: 1
     path: Assets/Scenes/2Players.unity
-    guid: 28d7d5fb87ac01842b9dfd947fb1a7ba
+    guid: 8ddc32b1e2916fe4d8aff9a6a1181c25
   - enabled: 0
     path: 
     guid: 00000000000000000000000000000000
   - enabled: 1
     path: Assets/Scenes/loss.unity
-    guid: 3997e6ee62c53b8479437bd890d73235
-  - enabled: 1
-    path: Assets/Scenes/TargetPractice.unity
-    guid: 2bb8e72689aee0d49b5c0ed975d1a5b2
+    guid: 9c119ea0e8fca1f4d869c1c1b0a49498
   m_configObjects: {}
