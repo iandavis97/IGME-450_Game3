@@ -605,8 +605,13 @@ Prefab:
     - target: {fileID: 233920107222542704, guid: d5229eab744c6024e9d7ed9e7fdf14b4,
         type: 2}
       propertyPath: m_BreakForce
-      value: 1024
+      value: 2048
       objectReference: {fileID: 0}
+    - target: {fileID: 114600301713988408, guid: d5229eab744c6024e9d7ed9e7fdf14b4,
+        type: 2}
+      propertyPath: decapSFX
+      value: 
+      objectReference: {fileID: 8300000, guid: a88cfa21d7d249a4c89b4e566a442d05, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d5229eab744c6024e9d7ed9e7fdf14b4, type: 2}
   m_IsPrefabAsset: 0
@@ -1882,8 +1887,13 @@ Prefab:
     - target: {fileID: 233920107222542704, guid: d5229eab744c6024e9d7ed9e7fdf14b4,
         type: 2}
       propertyPath: m_BreakForce
-      value: 1024
+      value: 2048
       objectReference: {fileID: 0}
+    - target: {fileID: 114600301713988408, guid: d5229eab744c6024e9d7ed9e7fdf14b4,
+        type: 2}
+      propertyPath: decapSFX
+      value: 
+      objectReference: {fileID: 8300000, guid: a88cfa21d7d249a4c89b4e566a442d05, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d5229eab744c6024e9d7ed9e7fdf14b4, type: 2}
   m_IsPrefabAsset: 0
