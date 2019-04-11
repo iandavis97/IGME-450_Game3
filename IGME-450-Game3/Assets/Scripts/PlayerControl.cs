@@ -141,6 +141,11 @@ public class PlayerControl : MonoBehaviour
     	sfx.pitch = 1;
     	sfx.PlayOneShot(decapSFX);
     	headRB.GetComponent<Collider2D>().enabled = false;
+		if (this.name == "Player Two") { // If we're P2 and we've been decapitated...
+			Score.IncreaseP1Score(60); // Then Player 1 gets the points. Vice versa, below.
+		} else if (this.name == "Player One"){
+			Score.IncreaseP2Score(60);
+		}
     }
 
     // Adds torque to upper arm.
@@ -204,7 +209,7 @@ public class PlayerControl : MonoBehaviour
             if(bodyPart.gameObject.CompareTag("Lower Arm"))
             {
                 Vector2 impactForce = bodyPart.GetComponent<Rigidbody2D>().velocity * 7.0f;
-                impactForce = Vector2.ClampMagnitude(impactForce, 70.0f);
+                impactForce = Vector2.ClampMagnitude(impactForce, 60.0f);
                 collision.gameObject.GetComponent<Rigidbody2D>().AddForce(impactForce, ForceMode2D.Impulse); //gives hits some oompf
             }
             //Debug.Log("calling flash on " + collision.gameObject.name);
