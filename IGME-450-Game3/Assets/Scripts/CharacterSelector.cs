@@ -43,6 +43,8 @@ public class CharacterSelector : MonoBehaviour {
     // to make input taking quick
     private InputManager input;
 
+    private bool p1CanChange = true, p2CanChange = true;
+
     // for leaving character select
     private bool p1Confirm;
     private bool p2Confirm;
@@ -59,6 +61,19 @@ public class CharacterSelector : MonoBehaviour {
         background.GetComponent<SpriteRenderer>().color = gray;
         chairs.GetComponent<SpriteRenderer>().color = gray;
         lights.GetComponent<SpriteRenderer>().color = gray;
+		p1CanChange = true;
+		p2CanChange = true;
+	}
+
+	private IEnumerator Cooldown(int player) {
+		if (player == 1) {
+			p1CanChange = false;
+		} else {
+			p2CanChange = false;
+		}
+		yield return new WaitForSeconds(0.25f);
+		p1CanChange = true;
+		p2CanChange = true;
 	}
 
     // Update is called once per frame
@@ -67,7 +82,7 @@ public class CharacterSelector : MonoBehaviour {
         if (CharacterSelect.GetComponent<Canvas>().enabled)
         {
             // code for cycling the characters
-            if (Input.GetKeyDown(input.p1Right))
+            if (Input.GetKeyDown(input.p1Right) || (input.p1leftRight == 1 && p1CanChange))
             {
                 switch (p1Character)
                 {
@@ -78,6 +93,7 @@ public class CharacterSelector : MonoBehaviour {
                                 p1[i].GetComponent<Image>().sprite = JC[i];
                             }
                             p1Character++;
+                            StartCoroutine(Cooldown(1));
                             break;
                         }
                     case (Character.Jonathan):
@@ -87,6 +103,7 @@ public class CharacterSelector : MonoBehaviour {
                                 p1[i].GetComponent<Image>().sprite = LS[i];
                             }
                             p1Character++;
+						StartCoroutine(Cooldown(1));
                             break;
                         }
                     case (Character.Lobster):
@@ -96,6 +113,7 @@ public class CharacterSelector : MonoBehaviour {
                                 p1[i].GetComponent<Image>().sprite = JB[i];
                             }
                             p1Character++;
+						StartCoroutine(Cooldown(1));
                             break;
                         }
                     default:
@@ -105,7 +123,7 @@ public class CharacterSelector : MonoBehaviour {
                 }
                 if (p1Character > Character.Lobster) { p1Character = Character.Johnny; }
             }
-            if (Input.GetKeyDown(input.p1Left))
+			if (Input.GetKeyDown(input.p1Left) || (input.p1leftRight == -1 && p1CanChange))
             {
                 switch (p1Character)
                 {
@@ -116,6 +134,7 @@ public class CharacterSelector : MonoBehaviour {
                                 p1[i].GetComponent<Image>().sprite = LS[i];
                             }
                             p1Character--;
+						StartCoroutine(Cooldown(1));
                             break;
                         }
                     case (Character.Jonathan):
@@ -125,6 +144,7 @@ public class CharacterSelector : MonoBehaviour {
                                 p1[i].GetComponent<Image>().sprite = JB[i];
                             }
                             p1Character--;
+						StartCoroutine(Cooldown(1));
                             break;
                         }
                     case (Character.Lobster):
@@ -134,6 +154,7 @@ public class CharacterSelector : MonoBehaviour {
                                 p1[i].GetComponent<Image>().sprite = JC[i];
                             }
                             p1Character--;
+						StartCoroutine(Cooldown(1));
                             break;
                         }
                     default:
@@ -143,7 +164,7 @@ public class CharacterSelector : MonoBehaviour {
                 }
                 if (p1Character < Character.Johnny) { p1Character = Character.Lobster; }
             }
-            if (Input.GetKeyDown(input.p2Right))
+			if (Input.GetKeyDown(input.p2Right) || (input.p2leftRight == 1 && p2CanChange))
             {
                 switch (p2Character)
                 {
@@ -154,6 +175,7 @@ public class CharacterSelector : MonoBehaviour {
                                 p2[i].GetComponent<Image>().sprite = JC[i];
                             }
                             p2Character++;
+						StartCoroutine(Cooldown(2));
                             break;
                         }
                     case (Character.Jonathan):
@@ -163,6 +185,7 @@ public class CharacterSelector : MonoBehaviour {
                                 p2[i].GetComponent<Image>().sprite = LS[i];
                             }
                             p2Character++;
+						StartCoroutine(Cooldown(2));
                             break;
                         }
                     case (Character.Lobster):
@@ -172,6 +195,7 @@ public class CharacterSelector : MonoBehaviour {
                                 p2[i].GetComponent<Image>().sprite = JB[i];
                             }
                             p2Character++;
+						StartCoroutine(Cooldown(2));
                             break;
                         }
                     default:
@@ -181,7 +205,7 @@ public class CharacterSelector : MonoBehaviour {
                 }
                 if (p2Character > Character.Lobster) { p2Character = Character.Johnny; }
             }
-            if (Input.GetKeyDown(input.p2Left))
+			if (Input.GetKeyDown(input.p2Left) || (input.p2leftRight == -1 && p2CanChange))
             {
                 switch (p2Character)
                 {
@@ -192,6 +216,7 @@ public class CharacterSelector : MonoBehaviour {
                                 p2[i].GetComponent<Image>().sprite = LS[i];
                             }
                             p2Character--;
+						StartCoroutine(Cooldown(2));
                             break;
                         }
                     case (Character.Jonathan):
@@ -201,6 +226,7 @@ public class CharacterSelector : MonoBehaviour {
                                 p2[i].GetComponent<Image>().sprite = JB[i];
                             }
                             p2Character--;
+						StartCoroutine(Cooldown(2));
                             break;
                         }
                     case (Character.Lobster):
@@ -210,6 +236,7 @@ public class CharacterSelector : MonoBehaviour {
                                 p2[i].GetComponent<Image>().sprite = JC[i];
                             }
                             p2Character--;
+						StartCoroutine(Cooldown(2));
                             break;
                         }
                     default:

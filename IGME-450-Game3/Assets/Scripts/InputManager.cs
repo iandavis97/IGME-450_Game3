@@ -62,16 +62,18 @@ public class InputManager : MonoBehaviour {
     }
 
 	private void Update () {
+		// We need to detect joystick inputs before the game starts.
+		p1leftRight = Input.GetAxis("P1X");
+		p2leftRight = -Input.GetAxis("P2X"); // Inverted due to -x scale
         // only happen if in-game
         if (inGame)
         {
             // For controllers, read the axis-based input.
             p1upArmSubf = Input.GetAxis("P1Fire1");
             p1loArmSubf = Input.GetAxis("P1Fire2");
-            p1leftRight = Input.GetAxis("P1X");
             p2upArmSubf = Input.GetAxis("P2Fire1");
             p2loArmSubf = Input.GetAxis("P2Fire2");
-            p2leftRight = -Input.GetAxis("P2X"); // Inverted due to -x scale
+
                                                  // Player 1 Controls.
             if (Input.GetKey(p1upArmAdd))
             {
@@ -163,6 +165,7 @@ public class InputManager : MonoBehaviour {
     // allows outside activation of game state
     public void GameStart()
     {
+		Score.instance.ActivateRoundIntro();
         inGame = true;
     }
 }

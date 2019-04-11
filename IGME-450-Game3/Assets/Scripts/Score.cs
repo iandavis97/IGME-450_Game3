@@ -30,6 +30,10 @@ public class Score : MonoBehaviour
 		winMessage.enabled = false;
 		p1Score = 0;
 		p2Score = 0;
+	}
+
+	// Starts the round intro.
+	public void ActivateRoundIntro() {
 		StartCoroutine(RoundIntro());
 	}
 
