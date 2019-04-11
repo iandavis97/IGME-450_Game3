@@ -602,6 +602,16 @@ Prefab:
       propertyPath: m_Size.y
       value: 4.7623544
       objectReference: {fileID: 0}
+    - target: {fileID: 233920107222542704, guid: d5229eab744c6024e9d7ed9e7fdf14b4,
+        type: 2}
+      propertyPath: m_BreakForce
+      value: 2048
+      objectReference: {fileID: 0}
+    - target: {fileID: 114600301713988408, guid: d5229eab744c6024e9d7ed9e7fdf14b4,
+        type: 2}
+      propertyPath: decapSFX
+      value: 
+      objectReference: {fileID: 8300000, guid: a88cfa21d7d249a4c89b4e566a442d05, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d5229eab744c6024e9d7ed9e7fdf14b4, type: 2}
   m_IsPrefabAsset: 0
@@ -944,7 +954,7 @@ MonoBehaviour:
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_Font: {fileID: 12800000, guid: a5af07783f1a7af44aadf02af66ca8ee, type: 3}
     m_FontSize: 36
     m_FontStyle: 0
     m_BestFit: 0
@@ -1086,6 +1096,7 @@ MonoBehaviour:
   p2leftRight: 0
   p1: {fileID: 107089389}
   p2: {fileID: 987705840}
+  controls: {fileID: 1982475375}
   p1ScoreText: {fileID: 860575637}
   p2ScoreText: {fileID: 433940617}
   p1Score: 0
@@ -1342,7 +1353,7 @@ MonoBehaviour:
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_Font: {fileID: 12800000, guid: a5af07783f1a7af44aadf02af66ca8ee, type: 3}
     m_FontSize: 36
     m_FontStyle: 0
     m_BestFit: 0
@@ -1873,6 +1884,16 @@ Prefab:
       propertyPath: m_Size.y
       value: 6.58171
       objectReference: {fileID: 0}
+    - target: {fileID: 233920107222542704, guid: d5229eab744c6024e9d7ed9e7fdf14b4,
+        type: 2}
+      propertyPath: m_BreakForce
+      value: 2048
+      objectReference: {fileID: 0}
+    - target: {fileID: 114600301713988408, guid: d5229eab744c6024e9d7ed9e7fdf14b4,
+        type: 2}
+      propertyPath: decapSFX
+      value: 
+      objectReference: {fileID: 8300000, guid: a88cfa21d7d249a4c89b4e566a442d05, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d5229eab744c6024e9d7ed9e7fdf14b4, type: 2}
   m_IsPrefabAsset: 0
@@ -2346,7 +2367,7 @@ MonoBehaviour:
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_Font: {fileID: 12800000, guid: 918586f1d79f56142b0f76b76f50d2af, type: 3}
     m_FontSize: 18
     m_FontStyle: 0
     m_BestFit: 0

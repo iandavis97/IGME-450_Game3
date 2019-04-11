@@ -44,6 +44,8 @@ public class PlayerControl : MonoBehaviour
     private BoxCollider2D upperArmCollider;
     private BoxCollider2D lowerArmCollider;
 
+    private bool decapitated = false;
+    public AudioClip decapSFX;
     AudioSource sfx;
     // Use this for initialization
     void Start()
@@ -126,6 +128,19 @@ public class PlayerControl : MonoBehaviour
         //if(Input.GetKey(KeyCode.RightArrow)) { ControlUpperArm(-5.0f); }
         //if(Input.GetKey(KeyCode.UpArrow)) { ControlLowerArm(5.0f); }
         //if(Input.GetKey(KeyCode.DownArrow)) { ControlLowerArm(-5.0f); }
+
+        // Upon decapitation, the joint automatically deletes itself as a component, so we're tracking this.
+        if (neckJoint == null && !decapitated) {
+        	Decapitate();
+        }
+    }
+
+    // Plays a sound and flips on the boolean for decapitation.
+    private void Decapitate() {
+    	decapitated = true;
+    	sfx.pitch = 1;
+    	sfx.PlayOneShot(decapSFX);
+    	headRB.GetComponent<Collider2D>().enabled = false;
     }
 
     // Adds torque to upper arm.
@@ -188,14 +203,16 @@ public class PlayerControl : MonoBehaviour
             StartCoroutine(collision.gameObject.GetComponent<CustomRigidbody>().flash()); // causes the hit body part to flash red, flash is a coroutine in Custom Rigidbody
             if(bodyPart.gameObject.CompareTag("Lower Arm"))
             {
-                collision.gameObject.GetComponent<Rigidbody2D>().AddForce(bodyPart.GetComponent<Rigidbody2D>().velocity * 5.0f, ForceMode2D.Impulse); //gives hits some oompf
+                Vector2 impactForce = bodyPart.GetComponent<Rigidbody2D>().velocity * 7.0f;
+                impactForce = Vector2.ClampMagnitude(impactForce, 70.0f);
+                collision.gameObject.GetComponent<Rigidbody2D>().AddForce(impactForce, ForceMode2D.Impulse); //gives hits some oompf
             }
             //Debug.Log("calling flash on " + collision.gameObject.name);
         }
 
         //playing sfx when hit
         if (!sfx.isPlaying) {
-        	sfx.pitch = Random.Range(-0.5f, 1f);
+        	sfx.pitch = Random.Range(0f, 1f);
             sfx.Play();
         }
     }
