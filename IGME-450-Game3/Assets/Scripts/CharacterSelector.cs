@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-enum Character { Johnny, Jonathan };
+enum Character { Johnny, Jonathan, Lobster };
 
 public class CharacterSelector : MonoBehaviour {
 
@@ -20,10 +20,12 @@ public class CharacterSelector : MonoBehaviour {
 
     // background
     public GameObject background;
+    public GameObject chairs;
+    public GameObject lights;
 
     // sprite arrays divided by character
-    public Sprite[] JB;
-    public Sprite[] JC;
+    public Sprite[] JB; // Johnny Bravo
+    public Sprite[] JC; // Jonathan Congratulations
 	public Sprite[] LS; // Lobster
 
     // these arrays contain the images presenting the player on-screen
@@ -53,7 +55,10 @@ public class CharacterSelector : MonoBehaviour {
         input = inputManager.GetComponent<InputManager>();
         p1Confirm = false;
         p2Confirm = false;
-        background.GetComponent<SpriteRenderer>().color = new Color(138, 138, 138);
+        Color gray = new Color(138, 138, 138);
+        background.GetComponent<SpriteRenderer>().color = gray;
+        chairs.GetComponent<SpriteRenderer>().color = gray;
+        lights.GetComponent<SpriteRenderer>().color = gray;
 	}
 
     // Update is called once per frame
@@ -79,6 +84,15 @@ public class CharacterSelector : MonoBehaviour {
                         {
                             for (int i = 0; i < 5; i++)
                             {
+                                p1[i].GetComponent<Image>().sprite = LS[i];
+                            }
+                            p1Character++;
+                            break;
+                        }
+                    case (Character.Lobster):
+                        {
+                            for (int i = 0; i < 5; i++)
+                            {
                                 p1[i].GetComponent<Image>().sprite = JB[i];
                             }
                             p1Character++;
@@ -89,7 +103,7 @@ public class CharacterSelector : MonoBehaviour {
                             break;
                         }
                 }
-                if (p1Character > Character.Jonathan) { p1Character = Character.Johnny; }
+                if (p1Character > Character.Lobster) { p1Character = Character.Johnny; }
             }
             if (Input.GetKeyDown(input.p1Left))
             {
@@ -99,7 +113,7 @@ public class CharacterSelector : MonoBehaviour {
                         {
                             for (int i = 0; i < 5; i++)
                             {
-                                p1[i].GetComponent<Image>().sprite = JC[i];
+                                p1[i].GetComponent<Image>().sprite = LS[i];
                             }
                             p1Character--;
                             break;
@@ -113,12 +127,21 @@ public class CharacterSelector : MonoBehaviour {
                             p1Character--;
                             break;
                         }
+                    case (Character.Lobster):
+                        {
+                            for (int i = 0; i < 5; i++)
+                            {
+                                p1[i].GetComponent<Image>().sprite = JC[i];
+                            }
+                            p1Character--;
+                            break;
+                        }
                     default:
                         {
                             break;
                         }
                 }
-                if (p1Character < Character.Johnny) { p1Character = Character.Jonathan; }
+                if (p1Character < Character.Johnny) { p1Character = Character.Lobster; }
             }
             if (Input.GetKeyDown(input.p2Right))
             {
@@ -137,6 +160,15 @@ public class CharacterSelector : MonoBehaviour {
                         {
                             for (int i = 0; i < 5; i++)
                             {
+                                p2[i].GetComponent<Image>().sprite = LS[i];
+                            }
+                            p2Character++;
+                            break;
+                        }
+                    case (Character.Lobster):
+                        {
+                            for (int i = 0; i < 5; i++)
+                            {
                                 p2[i].GetComponent<Image>().sprite = JB[i];
                             }
                             p2Character++;
@@ -147,7 +179,7 @@ public class CharacterSelector : MonoBehaviour {
                             break;
                         }
                 }
-                if (p2Character > Character.Jonathan) { p2Character = Character.Johnny; }
+                if (p2Character > Character.Lobster) { p2Character = Character.Johnny; }
             }
             if (Input.GetKeyDown(input.p2Left))
             {
@@ -157,7 +189,7 @@ public class CharacterSelector : MonoBehaviour {
                         {
                             for (int i = 0; i < 5; i++)
                             {
-                                p2[i].GetComponent<Image>().sprite = JC[i];
+                                p2[i].GetComponent<Image>().sprite = LS[i];
                             }
                             p2Character--;
                             break;
@@ -171,12 +203,21 @@ public class CharacterSelector : MonoBehaviour {
                             p2Character--;
                             break;
                         }
+                    case (Character.Lobster):
+                        {
+                            for(int i = 0; i < 5; i++)
+                            {
+                                p2[i].GetComponent<Image>().sprite = JC[i];
+                            }
+                            p2Character--;
+                            break;
+                        }
                     default:
                         {
                             break;
                         }
                 }
-                if (p2Character < Character.Johnny) { p2Character = Character.Jonathan; }
+                if (p2Character < Character.Johnny) { p2Character = Character.Lobster; }
             }
 
             // code to leave character select
@@ -204,6 +245,8 @@ public class CharacterSelector : MonoBehaviour {
                 }
 
                 background.GetComponent<SpriteRenderer>().color = Color.white;
+                chairs.GetComponent<SpriteRenderer>().color = Color.white;
+                lights.GetComponent<SpriteRenderer>().color = Color.white;
 
                 music.GetComponent<AudioSource>().Play();
 
