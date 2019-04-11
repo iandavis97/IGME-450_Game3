@@ -18,6 +18,7 @@ public class CharacterSelector : MonoBehaviour {
     // arrays divided by character
     public Sprite[] JB;
     public Sprite[] JC;
+	public Sprite[] LS; // Lobster
 
     // these arrays contain the images presenting the player on-screen
     public GameObject[] p1;
