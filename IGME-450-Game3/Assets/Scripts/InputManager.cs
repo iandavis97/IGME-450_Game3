@@ -22,6 +22,8 @@ public class InputManager : MonoBehaviour {
     private float distance = 1.5f; // Distance to move on walk
     private int numjoysticks = 0; // The number of connected joysticks.
 
+    private bool inGame; // Allows use of InputManager outside of fight
+
     // Grab a reference to the text piece for controls.
     // If Xbox One controller(s) are connected, detect them and override the keyboard controls.
     private void Awake() {
@@ -56,57 +58,79 @@ public class InputManager : MonoBehaviour {
 			controls.text += ControlStringJS("LB", "LT", "RB", "RT");
     	}
 
-        
+        inGame = false;
     }
 
 	private void Update () {
-		// For controllers, read the axis-based input.
-		p1upArmSubf = Input.GetAxis("P1Fire1");
-		p1loArmSubf = Input.GetAxis("P1Fire2");
-		p1leftRight = Input.GetAxis("P1X");
-		p2upArmSubf = Input.GetAxis("P2Fire1");
-		p2loArmSubf = Input.GetAxis("P2Fire2");
-		p2leftRight = -Input.GetAxis("P2X"); // Inverted due to -x scale
-		// Player 1 Controls.
-		if (Input.GetKey(p1upArmAdd)) {
-			p1.ControlUpperArm(torque);
-		} else if (Input.GetKey(p1upArmSub) || p1upArmSubf != 0) {
-			p1.ControlUpperArm(-torque);
-		}
-		if (Input.GetKey(p1loArmAdd)) {
-			p1.ControlLowerArm(torque);
-		} else if (Input.GetKey(p1loArmSub) || p1loArmSubf != 0) {
-			p1.ControlLowerArm(-torque);
-		}
-        if (Input.GetKey(p1Left) || p1leftRight < 0) {
-            p1.Walk(-distance);
-		} else if (Input.GetKey(p1Right) || p1leftRight > 0) {
-            p1.Walk(distance);
-        }
-		// Player 2 Controls.
-		if (Input.GetKey(p2upArmAdd)) {
-			p2.ControlUpperArm(torque);
-		} else if (Input.GetKey(p2upArmSub) || p2upArmSubf != 0) {
-			p2.ControlUpperArm(-torque);
-		}
-		if (Input.GetKey(p2loArmAdd)) {
-			p2.ControlLowerArm(torque);
-		} else if (Input.GetKey(p2loArmSub) || p2loArmSubf != 0) {
-			p2.ControlLowerArm(-torque);
-		}
-        if (Input.GetKey(p2Left) || p2leftRight < 0) {
-            p2.Walk(-distance);
-		} else if (Input.GetKey(p2Right) || p2leftRight > 0) {
-            p2.Walk(distance);
-        }
+        // only happen if in-game
+        if (inGame)
+        {
+            // For controllers, read the axis-based input.
+            p1upArmSubf = Input.GetAxis("P1Fire1");
+            p1loArmSubf = Input.GetAxis("P1Fire2");
+            p1leftRight = Input.GetAxis("P1X");
+            p2upArmSubf = Input.GetAxis("P2Fire1");
+            p2loArmSubf = Input.GetAxis("P2Fire2");
+            p2leftRight = -Input.GetAxis("P2X"); // Inverted due to -x scale
+                                                 // Player 1 Controls.
+            if (Input.GetKey(p1upArmAdd))
+            {
+                p1.ControlUpperArm(torque);
+            }
+            else if (Input.GetKey(p1upArmSub) || p1upArmSubf != 0)
+            {
+                p1.ControlUpperArm(-torque);
+            }
+            if (Input.GetKey(p1loArmAdd))
+            {
+                p1.ControlLowerArm(torque);
+            }
+            else if (Input.GetKey(p1loArmSub) || p1loArmSubf != 0)
+            {
+                p1.ControlLowerArm(-torque);
+            }
+            if (Input.GetKey(p1Left) || p1leftRight < 0)
+            {
+                p1.Walk(-distance);
+            }
+            else if (Input.GetKey(p1Right) || p1leftRight > 0)
+            {
+                p1.Walk(distance);
+            }
+            // Player 2 Controls.
+            if (Input.GetKey(p2upArmAdd))
+            {
+                p2.ControlUpperArm(torque);
+            }
+            else if (Input.GetKey(p2upArmSub) || p2upArmSubf != 0)
+            {
+                p2.ControlUpperArm(-torque);
+            }
+            if (Input.GetKey(p2loArmAdd))
+            {
+                p2.ControlLowerArm(torque);
+            }
+            else if (Input.GetKey(p2loArmSub) || p2loArmSubf != 0)
+            {
+                p2.ControlLowerArm(-torque);
+            }
+            if (Input.GetKey(p2Left) || p2leftRight < 0)
+            {
+                p2.Walk(-distance);
+            }
+            else if (Input.GetKey(p2Right) || p2leftRight > 0)
+            {
+                p2.Walk(distance);
+            }
 
-        //updating score
-        p1Score = Score.p1Score;
-        p2Score = Score.p2Score;
+            //updating score
+            p1Score = Score.p1Score;
+            p2Score = Score.p2Score;
 
-        //display score to user
-        p1ScoreText.text = p1Score.ToString();
-        p2ScoreText.text = p2Score.ToString();
+            //display score to user
+            p1ScoreText.text = p1Score.ToString();
+            p2ScoreText.text = p2Score.ToString();
+        }
     }
 
 	/** Helper function that builds a string of the keycodes required to control the player.
@@ -135,4 +159,10 @@ public class InputManager : MonoBehaviour {
 		result += "\n" + "LEFT STICK - MOVE LEFT / RIGHT";
 		return result;
 	}
+
+    // allows outside activation of game state
+    public void GameStart()
+    {
+        inGame = true;
+    }
 }

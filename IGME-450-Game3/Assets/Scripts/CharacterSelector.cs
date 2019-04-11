@@ -15,7 +15,13 @@ public class CharacterSelector : MonoBehaviour {
     public GameObject CharacterSelect;
     public GameObject InGame;
 
-    // arrays divided by character
+    // music
+    public GameObject music;
+
+    // background
+    public GameObject background;
+
+    // sprite arrays divided by character
     public Sprite[] JB;
     public Sprite[] JC;
 
@@ -46,6 +52,7 @@ public class CharacterSelector : MonoBehaviour {
         input = inputManager.GetComponent<InputManager>();
         p1Confirm = false;
         p2Confirm = false;
+        background.GetComponent<SpriteRenderer>().color = new Color(138, 138, 138);
 	}
 
     // Update is called once per frame
@@ -186,13 +193,20 @@ public class CharacterSelector : MonoBehaviour {
                 CharacterSelect.GetComponent<Canvas>().enabled = false;
                 InGame.GetComponent<Canvas>().enabled = true;
 
-                // sets the player sprites to the chosen sprites in the character select
                 for (int i = 0; i < 5; i++)
                 {
                     player1[i].GetComponent<SpriteRenderer>().sprite = p1[i].GetComponent<Image>().sprite;
                     player2[i].GetComponent<SpriteRenderer>().sprite = p2[i].GetComponent<Image>().sprite;
+
+                    player1[i].GetComponent<SpriteRenderer>().enabled = true;
+                    player2[i].GetComponent<SpriteRenderer>().enabled = true;
                 }
 
+                background.GetComponent<SpriteRenderer>().color = Color.white;
+
+                music.GetComponent<AudioSource>().Play();
+
+                input.GameStart();                
             }
         }
     }
