@@ -239,10 +239,13 @@ public class PlayerControl : MonoBehaviour
 				}
 	        	if (strength == 1) { // Light Hit
 	        		sfx.PlayOneShot(lightSFX[Random.Range(0, 2)]);
+                    Score.SetMultiplier(1);
 	        	} else if (strength == 3) { // Hard hit
 					sfx.PlayOneShot(hardSFX[Random.Range(0, 2)]);
+                    Score.SetMultiplier(2);
 	        	} else { // Medium hit
 					sfx.PlayOneShot(medSFX[Random.Range(0, 2)]);
+                    Score.SetMultiplier(3);
 	        	}
 	        }
         }

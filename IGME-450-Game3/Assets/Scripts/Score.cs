@@ -7,8 +7,9 @@ using UnityEngine.SceneManagement;
 public class Score : MonoBehaviour
 {
     public static Score instance = null;
-    public static float p1Score;
-    public static float p2Score;
+    public static int p1Score;
+    public static int p2Score;
+    public static int multiplier;
 
     public Text introMessage; // Message telling the player the objective.
     public Text winMessage; // The message displaying that the player has won.
@@ -30,6 +31,7 @@ public class Score : MonoBehaviour
 		winMessage.enabled = false;
 		p1Score = 0;
 		p2Score = 0;
+        multiplier = 1;
 	}
 
 	// Starts the round intro.
@@ -44,14 +46,20 @@ public class Score : MonoBehaviour
 			StartCoroutine(Win());
 		}
 	}
+    public static void SetMultiplier(int value)
+    {
+        multiplier = value;
+    }
     //increases score by passed in value, should be dependent on body part hit or other factors
     public static void IncreaseP1Score(int value)
     {
+        value *= multiplier;
        p1Score += value;
     }
     //increases score by passed in value, should be dependent on body part hit or other factors
     public static void IncreaseP2Score(int value)
     {
+        value *= multiplier;
         p2Score += value;
     }
 
