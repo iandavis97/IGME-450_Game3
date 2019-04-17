@@ -120,6 +120,21 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 114600301713988408, guid: d5229eab744c6024e9d7ed9e7fdf14b4,
+        type: 2}
+      propertyPath: medSFX.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 114600301713988408, guid: d5229eab744c6024e9d7ed9e7fdf14b4,
+        type: 2}
+      propertyPath: hardSFX.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 114600301713988408, guid: d5229eab744c6024e9d7ed9e7fdf14b4,
+        type: 2}
+      propertyPath: lightSFX.Array.size
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 4980904032860252, guid: d5229eab744c6024e9d7ed9e7fdf14b4, type: 2}
       propertyPath: m_LocalPosition.x
       value: 3
@@ -637,6 +652,66 @@ Prefab:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114600301713988408, guid: d5229eab744c6024e9d7ed9e7fdf14b4,
+        type: 2}
+      propertyPath: hardSFX.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: 8837a11851941cd4f8c83d5b3f12d167, type: 3}
+    - target: {fileID: 114600301713988408, guid: d5229eab744c6024e9d7ed9e7fdf14b4,
+        type: 2}
+      propertyPath: hardSFX.Array.data[1]
+      value: 
+      objectReference: {fileID: 8300000, guid: d0bcee5856b1ba644a929d2b2723d762, type: 3}
+    - target: {fileID: 114600301713988408, guid: d5229eab744c6024e9d7ed9e7fdf14b4,
+        type: 2}
+      propertyPath: hardSFX.Array.data[2]
+      value: 
+      objectReference: {fileID: 8300000, guid: 78d864135d0bc5b45a35f836c6c85f30, type: 3}
+    - target: {fileID: 114600301713988408, guid: d5229eab744c6024e9d7ed9e7fdf14b4,
+        type: 2}
+      propertyPath: lightSFX.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: 4456c6e11c4a981428ec632e83481e20, type: 3}
+    - target: {fileID: 114600301713988408, guid: d5229eab744c6024e9d7ed9e7fdf14b4,
+        type: 2}
+      propertyPath: lightSFX.Array.data[1]
+      value: 
+      objectReference: {fileID: 8300000, guid: fab3947b1b3665843a2a63cde0b6c9de, type: 3}
+    - target: {fileID: 114600301713988408, guid: d5229eab744c6024e9d7ed9e7fdf14b4,
+        type: 2}
+      propertyPath: lightSFX.Array.data[2]
+      value: 
+      objectReference: {fileID: 8300000, guid: 7d0fd654c5afb4b4eb9f80c77cc91d5f, type: 3}
+    - target: {fileID: 114600301713988408, guid: d5229eab744c6024e9d7ed9e7fdf14b4,
+        type: 2}
+      propertyPath: medSFX.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: 19d62f82be4236340a9af64f0afd7bef, type: 3}
+    - target: {fileID: 114600301713988408, guid: d5229eab744c6024e9d7ed9e7fdf14b4,
+        type: 2}
+      propertyPath: medSFX.Array.data[1]
+      value: 
+      objectReference: {fileID: 8300000, guid: 4cf4cdd9b8cf26749a244523520a8096, type: 3}
+    - target: {fileID: 114600301713988408, guid: d5229eab744c6024e9d7ed9e7fdf14b4,
+        type: 2}
+      propertyPath: medSFX.Array.data[2]
+      value: 
+      objectReference: {fileID: 8300000, guid: 1496a4e0f928c1d4291cd8dfa67a49d5, type: 3}
+    - target: {fileID: 114600301713988408, guid: d5229eab744c6024e9d7ed9e7fdf14b4,
+        type: 2}
+      propertyPath: medSFX.Array.data[3]
+      value: 
+      objectReference: {fileID: 8300000, guid: 19d62f82be4236340a9af64f0afd7bef, type: 3}
+    - target: {fileID: 114600301713988408, guid: d5229eab744c6024e9d7ed9e7fdf14b4,
+        type: 2}
+      propertyPath: medSFX.Array.data[4]
+      value: 
+      objectReference: {fileID: 8300000, guid: 4cf4cdd9b8cf26749a244523520a8096, type: 3}
+    - target: {fileID: 114600301713988408, guid: d5229eab744c6024e9d7ed9e7fdf14b4,
+        type: 2}
+      propertyPath: medSFX.Array.data[5]
+      value: 
+      objectReference: {fileID: 8300000, guid: 1496a4e0f928c1d4291cd8dfa67a49d5, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d5229eab744c6024e9d7ed9e7fdf14b4, type: 2}
   m_IsPrefabAsset: 0
@@ -1945,6 +2020,21 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 114600301713988408, guid: d5229eab744c6024e9d7ed9e7fdf14b4,
+        type: 2}
+      propertyPath: medSFX.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 114600301713988408, guid: d5229eab744c6024e9d7ed9e7fdf14b4,
+        type: 2}
+      propertyPath: hardSFX.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 114600301713988408, guid: d5229eab744c6024e9d7ed9e7fdf14b4,
+        type: 2}
+      propertyPath: lightSFX.Array.size
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 4980904032860252, guid: d5229eab744c6024e9d7ed9e7fdf14b4, type: 2}
       propertyPath: m_LocalPosition.x
       value: -3
@@ -2438,6 +2528,66 @@ Prefab:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114600301713988408, guid: d5229eab744c6024e9d7ed9e7fdf14b4,
+        type: 2}
+      propertyPath: hardSFX.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: 8837a11851941cd4f8c83d5b3f12d167, type: 3}
+    - target: {fileID: 114600301713988408, guid: d5229eab744c6024e9d7ed9e7fdf14b4,
+        type: 2}
+      propertyPath: hardSFX.Array.data[1]
+      value: 
+      objectReference: {fileID: 8300000, guid: d0bcee5856b1ba644a929d2b2723d762, type: 3}
+    - target: {fileID: 114600301713988408, guid: d5229eab744c6024e9d7ed9e7fdf14b4,
+        type: 2}
+      propertyPath: hardSFX.Array.data[2]
+      value: 
+      objectReference: {fileID: 8300000, guid: 78d864135d0bc5b45a35f836c6c85f30, type: 3}
+    - target: {fileID: 114600301713988408, guid: d5229eab744c6024e9d7ed9e7fdf14b4,
+        type: 2}
+      propertyPath: lightSFX.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: 4456c6e11c4a981428ec632e83481e20, type: 3}
+    - target: {fileID: 114600301713988408, guid: d5229eab744c6024e9d7ed9e7fdf14b4,
+        type: 2}
+      propertyPath: lightSFX.Array.data[1]
+      value: 
+      objectReference: {fileID: 8300000, guid: fab3947b1b3665843a2a63cde0b6c9de, type: 3}
+    - target: {fileID: 114600301713988408, guid: d5229eab744c6024e9d7ed9e7fdf14b4,
+        type: 2}
+      propertyPath: lightSFX.Array.data[2]
+      value: 
+      objectReference: {fileID: 8300000, guid: 7d0fd654c5afb4b4eb9f80c77cc91d5f, type: 3}
+    - target: {fileID: 114600301713988408, guid: d5229eab744c6024e9d7ed9e7fdf14b4,
+        type: 2}
+      propertyPath: medSFX.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: 19d62f82be4236340a9af64f0afd7bef, type: 3}
+    - target: {fileID: 114600301713988408, guid: d5229eab744c6024e9d7ed9e7fdf14b4,
+        type: 2}
+      propertyPath: medSFX.Array.data[1]
+      value: 
+      objectReference: {fileID: 8300000, guid: 4cf4cdd9b8cf26749a244523520a8096, type: 3}
+    - target: {fileID: 114600301713988408, guid: d5229eab744c6024e9d7ed9e7fdf14b4,
+        type: 2}
+      propertyPath: medSFX.Array.data[2]
+      value: 
+      objectReference: {fileID: 8300000, guid: 1496a4e0f928c1d4291cd8dfa67a49d5, type: 3}
+    - target: {fileID: 114600301713988408, guid: d5229eab744c6024e9d7ed9e7fdf14b4,
+        type: 2}
+      propertyPath: medSFX.Array.data[3]
+      value: 
+      objectReference: {fileID: 8300000, guid: 19d62f82be4236340a9af64f0afd7bef, type: 3}
+    - target: {fileID: 114600301713988408, guid: d5229eab744c6024e9d7ed9e7fdf14b4,
+        type: 2}
+      propertyPath: medSFX.Array.data[4]
+      value: 
+      objectReference: {fileID: 8300000, guid: 4cf4cdd9b8cf26749a244523520a8096, type: 3}
+    - target: {fileID: 114600301713988408, guid: d5229eab744c6024e9d7ed9e7fdf14b4,
+        type: 2}
+      propertyPath: medSFX.Array.data[5]
+      value: 
+      objectReference: {fileID: 8300000, guid: 1496a4e0f928c1d4291cd8dfa67a49d5, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d5229eab744c6024e9d7ed9e7fdf14b4, type: 2}
   m_IsPrefabAsset: 0

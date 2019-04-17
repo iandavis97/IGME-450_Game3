@@ -46,7 +46,12 @@ public class PlayerControl : MonoBehaviour
 
     private bool decapitated = false;
     public AudioClip decapSFX;
+    // Arrays for the light, medium, and hard hit sound effects.
+    public AudioClip[] lightSFX;
+	public AudioClip[] medSFX;
+	public AudioClip[] hardSFX;
     AudioSource sfx;
+
     // Use this for initialization
     void Start()
     {
@@ -183,6 +188,8 @@ public class PlayerControl : MonoBehaviour
         //this line just logs the collision to the console
         if (debug) Debug.Log(gameObject.name + "'s " + bodyPart.name + " has collided with " + collision.gameObject.transform.parent.name + "'s " + collision.gameObject.name);
 
+        int strength = 0; // strength levels 1, 2, 3
+
         //this check is for determining which object is moving faster and will only run on the object impacting with more force
         if(GetImpactingObject(bodyPart,collision.gameObject) && !bodyPart.gameObject.CompareTag("Ground") && !collision.gameObject.CompareTag("Ground"))
         {
@@ -208,17 +215,36 @@ public class PlayerControl : MonoBehaviour
             StartCoroutine(collision.gameObject.GetComponent<CustomRigidbody>().flash()); // causes the hit body part to flash red, flash is a coroutine in Custom Rigidbody
             if(bodyPart.gameObject.CompareTag("Lower Arm"))
             {
-                Vector2 impactForce = bodyPart.GetComponent<Rigidbody2D>().velocity * 7.0f;
+				Rigidbody2D rb = bodyPart.GetComponent<Rigidbody2D>();
+                Vector2 impactForce = rb.velocity * 7.0f;
+                if (rb.velocity.magnitude < 2f) { // Light hit
+                	strength = 1;
+				} else if (rb.velocity.magnitude > 4f) { // Hard hit
+					strength = 3;
+				} else { // Medium hit
+					strength = 2;
+                }
                 impactForce = Vector2.ClampMagnitude(impactForce, 60.0f);
+
                 collision.gameObject.GetComponent<Rigidbody2D>().AddForce(impactForce, ForceMode2D.Impulse); //gives hits some oompf
             }
             //Debug.Log("calling flash on " + collision.gameObject.name);
-        }
-
-        //playing sfx when hit
-        if (!sfx.isPlaying) {
-        	sfx.pitch = Random.Range(0f, 1f);
-            sfx.Play();
+				//playing sfx when hit
+	        if (!sfx.isPlaying) {
+	        	// Pitch randomization ranges are different for player one and two.
+				if (this.name == "Player One") {
+					sfx.pitch = (Random.Range(1.125f, 1.25f));
+				} else if (this.name == "Player Two") {
+					sfx.pitch = (Random.Range(0.75f, 0.875f));
+				}
+	        	if (strength == 1) { // Light Hit
+	        		sfx.PlayOneShot(lightSFX[Random.Range(0, 2)]);
+	        	} else if (strength == 3) { // Hard hit
+					sfx.PlayOneShot(hardSFX[Random.Range(0, 2)]);
+	        	} else { // Medium hit
+					sfx.PlayOneShot(medSFX[Random.Range(0, 2)]);
+	        	}
+	        }
         }
     }
 
