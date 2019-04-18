@@ -275,7 +275,7 @@ public class CharacterSelector : MonoBehaviour {
                 chairs.GetComponent<SpriteRenderer>().color = Color.white;
                 lights.GetComponent<SpriteRenderer>().color = Color.white;
 
-                music.GetComponent<AudioSource>().Play();
+                Jukebox.instance.Play();
 
                 input.GameStart();                
             }
