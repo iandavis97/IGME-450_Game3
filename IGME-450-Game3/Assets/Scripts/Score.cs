@@ -13,6 +13,7 @@ public class Score : MonoBehaviour
 
     public Text introMessage; // Message telling the player the objective.
     public Text winMessage; // The message displaying that the player has won.
+    public Text scoreMessage;
 
     private bool isWon = false; // Whether or not the round has been won.
     private const int TARG_SCORE = 100; // Number of points to win the game.
@@ -29,6 +30,7 @@ public class Score : MonoBehaviour
 	void Start() {
 		isWon = false;
 		winMessage.enabled = false;
+        scoreMessage.enabled = false;
 		p1Score = 0;
 		p2Score = 0;
         multiplier = 1;
@@ -62,7 +64,7 @@ public class Score : MonoBehaviour
         value *= multiplier;
         p2Score += value;
     }
-
+    
     private IEnumerator RoundIntro() {
     	introMessage.enabled = true;
 		introMessage.text = "First to " + TARG_SCORE + " points wins...";
@@ -71,7 +73,22 @@ public class Score : MonoBehaviour
 		yield return new WaitForSeconds(1f);
 		introMessage.enabled = false;
     }
-
+    public void ActivateScoreMessage(GameObject player, int score)
+    {
+        StartCoroutine(ScoreMessage(player, score));
+    }
+    private IEnumerator ScoreMessage(GameObject player, int score)//head will reference a player position to put text near
+    {
+        scoreMessage.enabled = true;
+        //making score float
+        scoreMessage.transform.position = new Vector3(
+            player.transform.position.x,
+            player.transform.position.y+1.0f,
+            player.transform.position.z);
+        scoreMessage.text = "+" +score;
+        yield return new WaitForSeconds(2f);
+        scoreMessage.enabled = false;
+    }
     private IEnumerator Win() {
     	isWon = true;
     	winMessage.enabled = true;

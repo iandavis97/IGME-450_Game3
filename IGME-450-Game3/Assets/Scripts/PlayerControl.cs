@@ -193,24 +193,66 @@ public class PlayerControl : MonoBehaviour
         //this check is for determining which object is moving faster and will only run on the object impacting with more force
         if(GetImpactingObject(bodyPart,collision.gameObject) && !bodyPart.gameObject.CompareTag("Ground") && !collision.gameObject.CompareTag("Ground"))
         {
+            //playing sfx when hit
+            if (!sfx.isPlaying)
+            {
+                // Pitch randomization ranges are different for player one and two.
+                if (this.name == "Player One")
+                {
+                    sfx.pitch = (Random.Range(1.125f, 1.25f));
+                }
+                else if (this.name == "Player Two")
+                {
+                    sfx.pitch = (Random.Range(0.75f, 0.875f));
+                }
+                if (strength == 1)
+                { // Light Hit
+                    sfx.PlayOneShot(lightSFX[Random.Range(0, 2)]);
+                    Score.SetMultiplier(1);
+                }
+                else if (strength == 3)
+                { // Hard hit
+                    sfx.PlayOneShot(hardSFX[Random.Range(0, 2)]);
+                    Score.SetMultiplier(2);
+                }
+                else
+                { // Medium hit
+                    sfx.PlayOneShot(medSFX[Random.Range(0, 2)]);
+                    Score.SetMultiplier(3);
+                }
+            }
             //process collsion here, including calling any score adding methods
-
+            int value = 0;
             //checking which player is getting hit, and then increase score of other player
             if (collision.gameObject.transform.parent.name == "Player Two")
             {
                 //checking which body part hit
-                if(collision.gameObject.name=="Torso")
-                    Score.IncreaseP1Score(1);
+                if (collision.gameObject.name == "Torso")
+                {
+                    value = 1;
+                    
+                }
                 if (collision.gameObject.name == "Head")
-                    Score.IncreaseP1Score(5);
+                {
+                    value = 5;
+                }
+                Score.IncreaseP1Score(value);
+                Score.instance.ActivateScoreMessage(head,value);
             }
             if (collision.gameObject.transform.parent.name == "Player One")
             {
                 //checking which body part hit
                 if (collision.gameObject.name == "Torso")
-                    Score.IncreaseP2Score(1);
+                {
+                    value = 1;
+
+                }
                 if (collision.gameObject.name == "Head")
-                    Score.IncreaseP2Score(5);
+                {
+                    value = 5;
+                }
+                Score.IncreaseP2Score(value);
+                Score.instance.ActivateScoreMessage(head, value);
             }
             StartCoroutine(collision.gameObject.GetComponent<CustomRigidbody>().flash()); // causes the hit body part to flash red, flash is a coroutine in Custom Rigidbody
             if(bodyPart.gameObject.CompareTag("Lower Arm"))
@@ -229,25 +271,7 @@ public class PlayerControl : MonoBehaviour
                 collision.gameObject.GetComponent<Rigidbody2D>().AddForce(impactForce, ForceMode2D.Impulse); //gives hits some oompf
             }
             //Debug.Log("calling flash on " + collision.gameObject.name);
-				//playing sfx when hit
-	        if (!sfx.isPlaying) {
-	        	// Pitch randomization ranges are different for player one and two.
-				if (this.name == "Player One") {
-					sfx.pitch = (Random.Range(1.125f, 1.25f));
-				} else if (this.name == "Player Two") {
-					sfx.pitch = (Random.Range(0.75f, 0.875f));
-				}
-	        	if (strength == 1) { // Light Hit
-	        		sfx.PlayOneShot(lightSFX[Random.Range(0, 2)]);
-                    Score.SetMultiplier(1);
-	        	} else if (strength == 3) { // Hard hit
-					sfx.PlayOneShot(hardSFX[Random.Range(0, 2)]);
-                    Score.SetMultiplier(2);
-	        	} else { // Medium hit
-					sfx.PlayOneShot(medSFX[Random.Range(0, 2)]);
-                    Score.SetMultiplier(3);
-	        	}
-	        }
+				
         }
     }
 
