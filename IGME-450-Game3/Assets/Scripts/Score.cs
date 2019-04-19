@@ -53,16 +53,18 @@ public class Score : MonoBehaviour
         multiplier = value;
     }
     //increases score by passed in value, should be dependent on body part hit or other factors
-    public static void IncreaseP1Score(int value)
+    public static int IncreaseP1Score(int value)
     {
         value *= multiplier;
        p1Score += value;
+        return value;
     }
     //increases score by passed in value, should be dependent on body part hit or other factors
-    public static void IncreaseP2Score(int value)
+    public static int IncreaseP2Score(int value)
     {
         value *= multiplier;
         p2Score += value;
+        return value;
     }
     
     private IEnumerator RoundIntro() {
