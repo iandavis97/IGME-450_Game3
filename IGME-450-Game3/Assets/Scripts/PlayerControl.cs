@@ -147,9 +147,11 @@ public class PlayerControl : MonoBehaviour
     	sfx.PlayOneShot(decapSFX);
     	headRB.GetComponent<Collider2D>().enabled = false;
 		if (this.name == "Player Two") { // If we're P2 and we've been decapitated...
-			Score.IncreaseP1Score(60); // Then Player 1 gets the points. Vice versa, below.
+            Score.SetMultiplier(1);
+			Score.IncreaseP1Score(20); // Then Player 1 gets the points. Vice versa, below.
 		} else if (this.name == "Player One"){
-			Score.IncreaseP2Score(60);
+            Score.SetMultiplier(1);
+            Score.IncreaseP2Score(20);
 		}
     }
 
@@ -196,6 +198,7 @@ public class PlayerControl : MonoBehaviour
             //playing sfx when hit
             if (!sfx.isPlaying)
             {
+                Score.SetMultiplier(1);
                 // Pitch randomization ranges are different for player one and two.
                 if (this.name == "Player One")
                 {
@@ -213,16 +216,16 @@ public class PlayerControl : MonoBehaviour
                 else if (strength == 3)
                 { // Hard hit
                     sfx.PlayOneShot(hardSFX[Random.Range(0, 2)]);
-                    Score.SetMultiplier(2);
+                    Score.SetMultiplier(3);
                 }
-                else
+                else if(strength==2)
                 { // Medium hit
                     sfx.PlayOneShot(medSFX[Random.Range(0, 2)]);
-                    Score.SetMultiplier(3);
+                    Score.SetMultiplier(2);
                 }
             }
             //process collsion here, including calling any score adding methods
-            int value = 0;
+            int value=1;
             //checking which player is getting hit, and then increase score of other player
             if (collision.gameObject.transform.parent.name == "Player Two")
             {
@@ -236,7 +239,7 @@ public class PlayerControl : MonoBehaviour
                 {
                     value = 5;
                 }
-                Score.IncreaseP1Score(value);
+                value=Score.IncreaseP1Score(value);
                 Score.instance.ActivateScoreMessage(head,value);
             }
             if (collision.gameObject.transform.parent.name == "Player One")
@@ -251,17 +254,18 @@ public class PlayerControl : MonoBehaviour
                 {
                     value = 5;
                 }
-                Score.IncreaseP2Score(value);
+                value=Score.IncreaseP2Score(value);
                 Score.instance.ActivateScoreMessage(head, value);
             }
             StartCoroutine(collision.gameObject.GetComponent<CustomRigidbody>().flash()); // causes the hit body part to flash red, flash is a coroutine in Custom Rigidbody
             if(bodyPart.gameObject.CompareTag("Lower Arm"))
             {
+                //**NOTE** LOOK AT THIS SECTION -IAN
 				Rigidbody2D rb = bodyPart.GetComponent<Rigidbody2D>();
                 Vector2 impactForce = rb.velocity * 7.0f;
                 if (rb.velocity.magnitude < 2f) { // Light hit
                 	strength = 1;
-				} else if (rb.velocity.magnitude > 4f) { // Hard hit
+				} else if (rb.velocity.magnitude > 3f) { // Hard hit
 					strength = 3;
 				} else { // Medium hit
 					strength = 2;
