@@ -17,6 +17,8 @@ public class Jukebox : MonoBehaviour {
 	}
 
 	public void Play() {
-		audi.PlayOneShot(music[Random.Range(0, music.Length)]);
+		audi.clip = (music[Random.Range(0, music.Length)]);
+		audi.loop = true;
+		audi.Play();
 	}
 }
