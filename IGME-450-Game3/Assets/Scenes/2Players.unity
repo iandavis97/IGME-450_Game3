@@ -867,6 +867,11 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1354337732098098, guid: d5229eab744c6024e9d7ed9e7fdf14b4,
     type: 2}
   m_PrefabInternal: {fileID: 49613762}
+--- !u!50 &190720900 stripped
+Rigidbody2D:
+  m_CorrespondingSourceObject: {fileID: 50137779315344346, guid: d5229eab744c6024e9d7ed9e7fdf14b4,
+    type: 2}
+  m_PrefabInternal: {fileID: 49613762}
 --- !u!1 &207556454
 GameObject:
   m_ObjectHideFlags: 0
@@ -973,6 +978,23 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1687213810315152, guid: d5229eab744c6024e9d7ed9e7fdf14b4,
     type: 2}
   m_PrefabInternal: {fileID: 1032922965}
+--- !u!256 &222348632
+FrictionJoint2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 222348629}
+  m_Enabled: 1
+  serializedVersion: 4
+  m_EnableCollision: 0
+  m_ConnectedRigidBody: {fileID: 1517109188}
+  m_BreakForce: Infinity
+  m_BreakTorque: Infinity
+  m_AutoConfigureConnectedAnchor: 1
+  m_Anchor: {x: 0, y: 2.86}
+  m_ConnectedAnchor: {x: 0.425001, y: 2.5266669}
+  m_MaxForce: 0.2
+  m_MaxTorque: 0.2
 --- !u!1 &228996252
 GameObject:
   m_ObjectHideFlags: 0
@@ -1943,6 +1965,11 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1354337732098098, guid: d5229eab744c6024e9d7ed9e7fdf14b4,
     type: 2}
   m_PrefabInternal: {fileID: 1032922965}
+--- !u!50 &979779098 stripped
+Rigidbody2D:
+  m_CorrespondingSourceObject: {fileID: 50137779315344346, guid: d5229eab744c6024e9d7ed9e7fdf14b4,
+    type: 2}
+  m_PrefabInternal: {fileID: 1032922965}
 --- !u!1 &986729254
 GameObject:
   m_ObjectHideFlags: 0
@@ -2900,6 +2927,23 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1687213810315152, guid: d5229eab744c6024e9d7ed9e7fdf14b4,
     type: 2}
   m_PrefabInternal: {fileID: 49613762}
+--- !u!256 &1170519555
+FrictionJoint2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1170519547}
+  m_Enabled: 1
+  serializedVersion: 4
+  m_EnableCollision: 0
+  m_ConnectedRigidBody: {fileID: 1799326431}
+  m_BreakForce: Infinity
+  m_BreakTorque: Infinity
+  m_AutoConfigureConnectedAnchor: 1
+  m_Anchor: {x: 0, y: 2.86}
+  m_ConnectedAnchor: {x: 0.23333232, y: 2.9350004}
+  m_MaxForce: 0.2
+  m_MaxTorque: 0.2
 --- !u!1001 &1186025432
 Prefab:
   m_ObjectHideFlags: 0
@@ -4270,6 +4314,28 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1138029474530324, guid: d5229eab744c6024e9d7ed9e7fdf14b4,
     type: 2}
   m_PrefabInternal: {fileID: 1032922965}
+--- !u!50 &1517109188 stripped
+Rigidbody2D:
+  m_CorrespondingSourceObject: {fileID: 50745169340483626, guid: d5229eab744c6024e9d7ed9e7fdf14b4,
+    type: 2}
+  m_PrefabInternal: {fileID: 1032922965}
+--- !u!256 &1517109193
+FrictionJoint2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1517109186}
+  m_Enabled: 1
+  serializedVersion: 4
+  m_EnableCollision: 0
+  m_ConnectedRigidBody: {fileID: 979779098}
+  m_BreakForce: Infinity
+  m_BreakTorque: Infinity
+  m_AutoConfigureConnectedAnchor: 1
+  m_Anchor: {x: 0, y: -2.63}
+  m_ConnectedAnchor: {x: 0.2916674, y: 4.2949996}
+  m_MaxForce: 0.15
+  m_MaxTorque: 1
 --- !u!1 &1630817513 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1333330358874528, guid: d5229eab744c6024e9d7ed9e7fdf14b4,
@@ -4278,6 +4344,28 @@ GameObject:
 --- !u!1 &1799326429 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1138029474530324, guid: d5229eab744c6024e9d7ed9e7fdf14b4,
+    type: 2}
+  m_PrefabInternal: {fileID: 49613762}
+--- !u!256 &1799326430
+FrictionJoint2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1799326429}
+  m_Enabled: 1
+  serializedVersion: 4
+  m_EnableCollision: 0
+  m_ConnectedRigidBody: {fileID: 190720900}
+  m_BreakForce: Infinity
+  m_BreakTorque: Infinity
+  m_AutoConfigureConnectedAnchor: 1
+  m_Anchor: {x: 0, y: -2.63}
+  m_ConnectedAnchor: {x: 0.6250004, y: 4.161666}
+  m_MaxForce: 0.15
+  m_MaxTorque: 1
+--- !u!50 &1799326431 stripped
+Rigidbody2D:
+  m_CorrespondingSourceObject: {fileID: 50745169340483626, guid: d5229eab744c6024e9d7ed9e7fdf14b4,
     type: 2}
   m_PrefabInternal: {fileID: 49613762}
 --- !u!1 &1810637075
