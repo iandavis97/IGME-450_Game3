@@ -71,6 +71,7 @@ public class Score : MonoBehaviour
     	introMessage.enabled = true;
 		introMessage.text = "First to " + TARG_SCORE + " points wins...";
 		yield return new WaitForSeconds(3f);
+		UISFX.instance.Bell(2);
 		introMessage.text = "FIGHT!";
 		yield return new WaitForSeconds(1f);
 		introMessage.enabled = false;
@@ -94,6 +95,7 @@ public class Score : MonoBehaviour
     private IEnumerator Win() {
     	isWon = true;
     	winMessage.enabled = true;
+		UISFX.instance.Bell(2);
     	if (p1Score > p2Score) { // P1 has won
     	 	winMessage.text = "PLAYER 1 WINS!";
     	} else { // P2 has won

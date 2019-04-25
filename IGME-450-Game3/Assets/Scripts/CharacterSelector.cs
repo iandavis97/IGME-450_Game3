@@ -18,6 +18,16 @@ public class CharacterSelector : MonoBehaviour {
     // music
     public GameObject music;
 
+    // arrow animation
+    public GameObject p1LeftArrow;
+    public GameObject p1RightArrow;
+    public GameObject p2LeftArrow;
+    public GameObject p2RightArrow;
+    private ArrowPulse p1LeftArrowAnimator;
+    private ArrowPulse p2LeftArrowAnimator;
+    private ArrowPulse p1RightArrowAnimator;
+    private ArrowPulse p2RightArrowAnimator;
+
     // background
     public GameObject background;
     public GameObject chairs;
@@ -49,6 +59,8 @@ public class CharacterSelector : MonoBehaviour {
     private bool p1Confirm;
     private bool p2Confirm;
 
+    public Text instructions;
+
 	// Use this for initialization
 	void Start ()
     {
@@ -63,6 +75,17 @@ public class CharacterSelector : MonoBehaviour {
         lights.GetComponent<SpriteRenderer>().color = gray;
 		p1CanChange = true;
 		p2CanChange = true;
+
+        p1LeftArrowAnimator = p1LeftArrow.GetComponent<ArrowPulse>();
+        p1RightArrowAnimator = p1RightArrow.GetComponent<ArrowPulse>();
+        p2LeftArrowAnimator = p2LeftArrow.GetComponent<ArrowPulse>();
+        p2RightArrowAnimator = p2RightArrow.GetComponent<ArrowPulse>();
+
+		Invoke("SetString", Time.deltaTime);
+	}
+
+	private void SetString() {
+		instructions.text = "Press " + (input.GetSelectString()) + " to confirm";
 	}
 
 	private IEnumerator Cooldown(int player) {
@@ -82,8 +105,11 @@ public class CharacterSelector : MonoBehaviour {
         if (CharacterSelect.GetComponent<Canvas>().enabled)
         {
             // code for cycling the characters
-            if (Input.GetKeyDown(input.p1Right) || (input.p1leftRight == 1 && p1CanChange))
+            if (p1CanChange && Input.GetKeyDown(input.p1Right) || input.p1leftRight == 1)
             {
+                p1RightArrowAnimator.PulseArrow(); // animates the arrow to flash
+				UISFX.instance.UISound(false); // Selection Sound
+
                 switch (p1Character)
                 {
                     case (Character.Johnny):
@@ -123,8 +149,11 @@ public class CharacterSelector : MonoBehaviour {
                 }
                 if (p1Character > Character.Lobster) { p1Character = Character.Johnny; }
             }
-			if (Input.GetKeyDown(input.p1Left) || (input.p1leftRight == -1 && p1CanChange))
+			if (p1CanChange && Input.GetKeyDown(input.p1Left) || input.p1leftRight == -1)
             {
+                p1LeftArrowAnimator.PulseArrow(); // arrow flash
+				UISFX.instance.UISound(false); // Selection Sound
+
                 switch (p1Character)
                 {
                     case (Character.Johnny):
@@ -164,8 +193,11 @@ public class CharacterSelector : MonoBehaviour {
                 }
                 if (p1Character < Character.Johnny) { p1Character = Character.Lobster; }
             }
-			if (Input.GetKeyDown(input.p2Right) || (input.p2leftRight == 1 && p2CanChange))
+			if (p2CanChange && Input.GetKeyDown(input.p2Right) || input.p2leftRight == 1)
             {
+                p2RightArrowAnimator.PulseArrow(); // arrow flash
+				UISFX.instance.UISound(false); // Selection Sound
+
                 switch (p2Character)
                 {
                     case (Character.Johnny):
@@ -205,8 +237,11 @@ public class CharacterSelector : MonoBehaviour {
                 }
                 if (p2Character > Character.Lobster) { p2Character = Character.Johnny; }
             }
-			if (Input.GetKeyDown(input.p2Left) || (input.p2leftRight == -1 && p2CanChange))
+			if (p2CanChange && Input.GetKeyDown(input.p2Left) || input.p2leftRight == -1)
             {
+                p2LeftArrowAnimator.PulseArrow(); // arrow flash
+				UISFX.instance.UISound(false); // Selection Sound
+
                 switch (p2Character)
                 {
                     case (Character.Johnny):
@@ -247,14 +282,46 @@ public class CharacterSelector : MonoBehaviour {
                 if (p2Character < Character.Johnny) { p2Character = Character.Lobster; }
             }
 
-            // code to leave character select
-            if (Input.GetKeyDown(input.p1loArmAdd) || Input.GetKeyDown(input.p1loArmSub) || Input.GetKeyDown(input.p1upArmAdd) || Input.GetKeyDown(input.p1upArmSub))
+            // allow the players to back out of a confirmed character
+            if (p1Confirm && (Input.GetKeyDown(input.p1loArmSub) || Input.GetKeyDown(input.p1upArmSub)))
             {
-                p1Confirm = true;
+                p1Confirm = false;
+                p1CanChange = true;
+                for (int i = 0; i < 5; i++)
+                {
+                    p1[i].GetComponent<Image>().color = Color.white;
+                }
             }
-            if (Input.GetKeyDown(input.p2loArmAdd) || Input.GetKeyDown(input.p2loArmSub) || Input.GetKeyDown(input.p2upArmAdd) || Input.GetKeyDown(input.p2upArmSub))
+            if (p2Confirm && (Input.GetKeyDown(input.p2loArmSub) || Input.GetKeyDown(input.p2upArmSub)))
             {
+                p2Confirm = false;
+                p2CanChange = true;
+                for (int i = 0; i < 5; i++)
+                {
+                    p2[i].GetComponent<Image>().color = Color.white;
+                }
+            }
+
+            // code to leave character select
+            if (Input.GetKeyDown(input.p1loArmAdd) || Input.GetKeyDown(input.p1upArmAdd))
+            {
+				UISFX.instance.UISound(true); // Confirmation Sound
+                p1Confirm = true;
+                p1CanChange = false;
+                for (int i = 0; i < 5; i++)
+                {
+                    p1[i].GetComponent<Image>().color = Color.gray;
+                }
+            }
+            if (Input.GetKeyDown(input.p2loArmAdd) || Input.GetKeyDown(input.p2upArmAdd))
+            {
+				UISFX.instance.UISound(true); // Confirmation Sound
                 p2Confirm = true;
+                p2CanChange = false;
+                for (int i = 0; i < 5; i++)
+                {
+                    p2[i].GetComponent<Image>().color = Color.gray;
+                }
             }
             if (p1Confirm && p2Confirm)
             {
