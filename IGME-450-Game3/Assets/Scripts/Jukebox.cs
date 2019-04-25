@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Jukebox : MonoBehaviour {
 
+	public AudioClip charSelect;
 	public AudioClip[] music; 
 	private AudioSource audi;
 
@@ -14,9 +15,14 @@ public class Jukebox : MonoBehaviour {
 			instance = this;
 		}
 		audi = GetComponent<AudioSource>();
+		audi.clip = charSelect;
+		audi.Play();
 	}
 
 	public void Play() {
-		audi.PlayOneShot(music[Random.Range(0, music.Length)]);
+		audi.Stop();
+		audi.clip = (music[Random.Range(0, music.Length)]);
+		audi.loop = true;
+		audi.Play();
 	}
 }

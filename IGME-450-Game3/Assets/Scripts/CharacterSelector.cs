@@ -55,6 +55,8 @@ public class CharacterSelector : MonoBehaviour {
     private bool p1Confirm;
     private bool p2Confirm;
 
+    public Text instructions;
+
 	// Use this for initialization
 	void Start ()
     {
@@ -69,6 +71,12 @@ public class CharacterSelector : MonoBehaviour {
         lights.GetComponent<SpriteRenderer>().color = gray;
 		p1CanChange = true;
 		p2CanChange = true;
+
+		Invoke("SetString", Time.deltaTime);
+	}
+
+	private void SetString() {
+		instructions.text = "Press " + (input.GetSelectString()) + " to confirm";
 	}
 
 	private IEnumerator Cooldown(int player) {
@@ -91,6 +99,8 @@ public class CharacterSelector : MonoBehaviour {
             if (p1CanChange && Input.GetKeyDown(input.p1Right) || input.p1leftRight == 1)
             {
                 p1RightArrow.PulseArrow(); // animates the arrow to flash
+				UISFX.instance.UISound(false); // Selection Sound
+
                 switch (p1Character)
                 {
                     case (Character.Johnny):
@@ -132,7 +142,9 @@ public class CharacterSelector : MonoBehaviour {
             }
 			if (p1CanChange && Input.GetKeyDown(input.p1Left) || input.p1leftRight == -1)
             {
-                p1LeftArrow.PulseArrow();
+                p1LeftArrow.PulseArrow(); // arrow flash
+				UISFX.instance.UISound(false); // Selection Sound
+
                 switch (p1Character)
                 {
                     case (Character.Johnny):
@@ -174,7 +186,9 @@ public class CharacterSelector : MonoBehaviour {
             }
 			if (p2CanChange && Input.GetKeyDown(input.p2Right) || input.p2leftRight == 1)
             {
-                p2RightArrow.PulseArrow();
+                p2RightArrow.PulseArrow(); // arrow flash
+				UISFX.instance.UISound(false); // Selection Sound
+
                 switch (p2Character)
                 {
                     case (Character.Johnny):
@@ -216,7 +230,9 @@ public class CharacterSelector : MonoBehaviour {
             }
 			if (p2CanChange && Input.GetKeyDown(input.p2Left) || input.p2leftRight == -1)
             {
-                p2LeftArrow.PulseArrow();
+                p2LeftArrow.PulseArrow(); // arrow flash
+				UISFX.instance.UISound(false); // Selection Sound
+
                 switch (p2Character)
                 {
                     case (Character.Johnny):
@@ -280,6 +296,7 @@ public class CharacterSelector : MonoBehaviour {
             // code to leave character select
             if (Input.GetKeyDown(input.p1loArmAdd) || Input.GetKeyDown(input.p1upArmAdd))
             {
+				UISFX.instance.UISound(true); // Confirmation Sound
                 p1Confirm = true;
                 p1CanChange = false;
                 for (int i = 0; i < 5; i++)
@@ -289,6 +306,7 @@ public class CharacterSelector : MonoBehaviour {
             }
             if (Input.GetKeyDown(input.p2loArmAdd) || Input.GetKeyDown(input.p2upArmAdd))
             {
+				UISFX.instance.UISound(true); // Confirmation Sound
                 p2Confirm = true;
                 p2CanChange = false;
                 for (int i = 0; i < 5; i++)
