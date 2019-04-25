@@ -18,6 +18,12 @@ public class CharacterSelector : MonoBehaviour {
     // music
     public GameObject music;
 
+    // arrow animation
+    public ArrowPulse p1LeftArrow;
+    public ArrowPulse p1RightArrow;
+    public ArrowPulse p2LeftArrow;
+    public ArrowPulse p2RightArrow;
+
     // background
     public GameObject background;
     public GameObject chairs;
@@ -82,8 +88,9 @@ public class CharacterSelector : MonoBehaviour {
         if (CharacterSelect.GetComponent<Canvas>().enabled)
         {
             // code for cycling the characters
-            if (Input.GetKeyDown(input.p1Right) || (input.p1leftRight == 1 && p1CanChange))
+            if (p1CanChange && Input.GetKeyDown(input.p1Right) || input.p1leftRight == 1)
             {
+                p1RightArrow.PulseArrow(); // animates the arrow to flash
                 switch (p1Character)
                 {
                     case (Character.Johnny):
@@ -123,8 +130,9 @@ public class CharacterSelector : MonoBehaviour {
                 }
                 if (p1Character > Character.Lobster) { p1Character = Character.Johnny; }
             }
-			if (Input.GetKeyDown(input.p1Left) || (input.p1leftRight == -1 && p1CanChange))
+			if (p1CanChange && Input.GetKeyDown(input.p1Left) || input.p1leftRight == -1)
             {
+                p1LeftArrow.PulseArrow();
                 switch (p1Character)
                 {
                     case (Character.Johnny):
@@ -164,8 +172,9 @@ public class CharacterSelector : MonoBehaviour {
                 }
                 if (p1Character < Character.Johnny) { p1Character = Character.Lobster; }
             }
-			if (Input.GetKeyDown(input.p2Right) || (input.p2leftRight == 1 && p2CanChange))
+			if (p2CanChange && Input.GetKeyDown(input.p2Right) || input.p2leftRight == 1)
             {
+                p2RightArrow.PulseArrow();
                 switch (p2Character)
                 {
                     case (Character.Johnny):
@@ -205,8 +214,9 @@ public class CharacterSelector : MonoBehaviour {
                 }
                 if (p2Character > Character.Lobster) { p2Character = Character.Johnny; }
             }
-			if (Input.GetKeyDown(input.p2Left) || (input.p2leftRight == -1 && p2CanChange))
+			if (p2CanChange && Input.GetKeyDown(input.p2Left) || input.p2leftRight == -1)
             {
+                p2LeftArrow.PulseArrow();
                 switch (p2Character)
                 {
                     case (Character.Johnny):
@@ -247,14 +257,44 @@ public class CharacterSelector : MonoBehaviour {
                 if (p2Character < Character.Johnny) { p2Character = Character.Lobster; }
             }
 
+            // allow the players to back out of a confirmed character
+            if (p1Confirm && (Input.GetKeyDown(input.p1loArmSub) || Input.GetKeyDown(input.p1upArmSub)))
+            {
+                p1Confirm = false;
+                p1CanChange = true;
+                for (int i = 0; i < 5; i++)
+                {
+                    p1[i].GetComponent<Image>().color = Color.white;
+                }
+            }
+            if (p2Confirm && (Input.GetKeyDown(input.p2loArmSub) || Input.GetKeyDown(input.p2upArmSub)))
+            {
+                p2Confirm = false;
+                p2CanChange = true;
+                for (int i = 0; i < 5; i++)
+                {
+                    p2[i].GetComponent<Image>().color = Color.white;
+                }
+            }
+
             // code to leave character select
-            if (Input.GetKeyDown(input.p1loArmAdd) || Input.GetKeyDown(input.p1loArmSub) || Input.GetKeyDown(input.p1upArmAdd) || Input.GetKeyDown(input.p1upArmSub))
+            if (Input.GetKeyDown(input.p1loArmAdd) || Input.GetKeyDown(input.p1upArmAdd))
             {
                 p1Confirm = true;
+                p1CanChange = false;
+                for (int i = 0; i < 5; i++)
+                {
+                    p1[i].GetComponent<Image>().color = Color.gray;
+                }
             }
-            if (Input.GetKeyDown(input.p2loArmAdd) || Input.GetKeyDown(input.p2loArmSub) || Input.GetKeyDown(input.p2upArmAdd) || Input.GetKeyDown(input.p2upArmSub))
+            if (Input.GetKeyDown(input.p2loArmAdd) || Input.GetKeyDown(input.p2upArmAdd))
             {
                 p2Confirm = true;
+                p2CanChange = false;
+                for (int i = 0; i < 5; i++)
+                {
+                    p2[i].GetComponent<Image>().color = Color.gray;
+                }
             }
             if (p1Confirm && p2Confirm)
             {
