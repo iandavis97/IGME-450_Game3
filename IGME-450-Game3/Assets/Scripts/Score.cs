@@ -89,7 +89,17 @@ public class Score : MonoBehaviour
             player.transform.position.y+2.0f,
             player.transform.position.z);
         scoreMessage.text = "+" +score;
-        yield return new WaitForSeconds(2f);
+
+        //floating the text
+        for (float i = .01f; i < 1.0f; i+=.01f)
+        {
+            scoreMessage.transform.position = new Vector3(
+            scoreMessage.transform.position.x,
+            scoreMessage.transform.position.y + i,
+            scoreMessage.transform.position.z);
+            yield return new WaitForSeconds(i);
+        }
+        
         scoreMessage.enabled = false;
     }
     private IEnumerator Win() {
