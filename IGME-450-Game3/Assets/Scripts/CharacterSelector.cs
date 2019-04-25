@@ -85,7 +85,7 @@ public class CharacterSelector : MonoBehaviour {
 	}
 
 	private void SetString() {
-		instructions.text = "Press " + (input.GetSelectString()) + " to confirm";
+		instructions.text = input.GetSelectString();
 	}
 
 	private IEnumerator Cooldown(int player) {
@@ -283,7 +283,7 @@ public class CharacterSelector : MonoBehaviour {
             }
 
             // allow the players to back out of a confirmed character
-            if (p1Confirm && (Input.GetKeyDown(input.p1loArmSub) || Input.GetKeyDown(input.p1upArmSub)))
+			if (p1Confirm && (Input.GetKeyDown(input.p1loArmSub) || Input.GetKeyDown(input.p1upArmSub) || input.p1loArmSubf >= 0.9f || input.p1upArmSubf >= 0.9f))
             {
                 p1Confirm = false;
                 p1CanChange = true;
@@ -292,7 +292,7 @@ public class CharacterSelector : MonoBehaviour {
                     p1[i].GetComponent<Image>().color = Color.white;
                 }
             }
-            if (p2Confirm && (Input.GetKeyDown(input.p2loArmSub) || Input.GetKeyDown(input.p2upArmSub)))
+			if (p2Confirm && (Input.GetKeyDown(input.p2loArmSub) || Input.GetKeyDown(input.p2upArmSub) || input.p2loArmSubf >= 0.9f || input.p2upArmSubf >= 0.9f))
             {
                 p2Confirm = false;
                 p2CanChange = true;
@@ -313,7 +313,7 @@ public class CharacterSelector : MonoBehaviour {
                     p1[i].GetComponent<Image>().color = Color.gray;
                 }
             }
-            if (Input.GetKeyDown(input.p2loArmAdd) || Input.GetKeyDown(input.p2upArmAdd))
+			if (Input.GetKeyDown(input.p2loArmAdd) || Input.GetKeyDown(input.p2upArmAdd))
             {
 				UISFX.instance.UISound(true); // Confirmation Sound
                 p2Confirm = true;

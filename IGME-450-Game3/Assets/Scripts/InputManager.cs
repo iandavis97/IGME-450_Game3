@@ -6,7 +6,7 @@ using UnityEngine.UI; // For displaying the text string for controls.
 public class InputManager : MonoBehaviour {
 
 	// Controls for player 1 and 2.
-	public KeyCode p1upArmAdd, p1upArmSub, p1loArmAdd, p1loArmSub, p1Left, p1Right, p2upArmAdd, p2upArmSub, p2loArmAdd, p2loArmSub, p2Left, p2Right;
+	public KeyCode p1upArmAdd, p1upArmSub, p1loArmAdd, p1loArmSub, p1Left, p1Right, p2upArmAdd, p2upArmSub, p2loArmAdd, p2loArmSub, p2Left, p2Right; // Note: p1upArmAdd and p1loArmAdd (and p2 variants) are buttons to leave character select.
 	[SerializeField]
 	public float p1upArmSubf, p1loArmSubf, p1leftRight, p2upArmSubf, p2loArmSubf, p2leftRight; // Use floats to express axis-based input.
 	public PlayerControl p1, p2; // PlayerControl objects for respective players.
@@ -45,24 +45,28 @@ public class InputManager : MonoBehaviour {
 
     // Displays controls to the user.
     private void Start() {
+    	selectString += "PRESS ";
     	if (numjoysticks <= 0) { // No joysticks
 			controls.text = "Player 1";
 			controls.text += ControlString(p1upArmAdd, p1upArmSub, p1loArmAdd, p1loArmSub, p1Left, p1Right);
 			controls.text += "\n\nPlayer 2";
 			controls.text += ControlString(p2upArmAdd, p2upArmSub, p2loArmAdd, p2loArmSub, p2Left, p2Right);
-			selectString += "\nP1: " + p1upArmAdd.ToString() + " / " + p1upArmSub.ToString() + " / " + p1loArmAdd.ToString() + " / " + p1loArmSub.ToString() + "\n";
-			selectString += "P2: " + p2upArmAdd.ToString() + " / " + p2upArmSub.ToString() + " / " + p2loArmAdd.ToString() + " / " + p2loArmSub.ToString() + "\n";
+			selectString += "\nP1: " + p1upArmSub.ToString() + " - " + p1loArmSub.ToString() + " - BACK\n";
+			selectString += p1upArmAdd.ToString() + " - " + p1loArmAdd.ToString() + " - CONFIRM\n";
+			selectString += "\nP2: " + p2upArmSub.ToString() + " - " + p2loArmSub.ToString() + " - BACK\n";
+			selectString += p2upArmAdd.ToString() + " - " + p2loArmAdd.ToString() + " - CONFIRM\n";
 		} else if (numjoysticks == 1) { // One joystick
 			controls.text = "Player 1";
 			controls.text += ControlStringJS("LB", "LT", "RB", "RT");
 			controls.text += "\n\nPlayer 2";
 			controls.text += ControlString(p2upArmAdd, p2upArmSub, p2loArmAdd, p2loArmSub, p2Left, p2Right);
-			selectString += "\nP1: " +"LB LT RB RT \n";
-			selectString += "P2: " +p2upArmAdd.ToString() + " / " + p2upArmSub.ToString() + " / " + p2loArmAdd.ToString() + " / " + p2loArmSub.ToString() + "\n";
+			selectString += "\nP1: " + "LT - RT - CONFIRM\n LB - RB - BACK\n";
+			selectString += "\nP2: " + p2upArmSub.ToString() + " - " + p2loArmSub.ToString() + " - BACK\n";
+			selectString += p2upArmAdd.ToString() + " - " + p2loArmAdd.ToString() + " - CONFIRM\n";
     	} else if (numjoysticks == 2) { // Two joysticks
 			controls.text = "Controls";
 			controls.text += ControlStringJS("LB", "LT", "RB", "RT");
-			selectString += "\nLB LT RB RT\n";
+			selectString += "\nLT - RT - CONFIRM\n LB - RB - BACK\n";
     	}
 
         inGame = false;
