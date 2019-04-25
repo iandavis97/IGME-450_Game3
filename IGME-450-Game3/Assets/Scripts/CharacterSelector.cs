@@ -19,10 +19,14 @@ public class CharacterSelector : MonoBehaviour {
     public GameObject music;
 
     // arrow animation
-    public ArrowPulse p1LeftArrow;
-    public ArrowPulse p1RightArrow;
-    public ArrowPulse p2LeftArrow;
-    public ArrowPulse p2RightArrow;
+    public GameObject p1LeftArrow;
+    public GameObject p1RightArrow;
+    public GameObject p2LeftArrow;
+    public GameObject p2RightArrow;
+    private ArrowPulse p1LeftArrowAnimator;
+    private ArrowPulse p2LeftArrowAnimator;
+    private ArrowPulse p1RightArrowAnimator;
+    private ArrowPulse p2RightArrowAnimator;
 
     // background
     public GameObject background;
@@ -72,6 +76,11 @@ public class CharacterSelector : MonoBehaviour {
 		p1CanChange = true;
 		p2CanChange = true;
 
+        p1LeftArrowAnimator = p1LeftArrow.GetComponent<ArrowPulse>();
+        p1RightArrowAnimator = p1RightArrow.GetComponent<ArrowPulse>();
+        p2LeftArrowAnimator = p2LeftArrow.GetComponent<ArrowPulse>();
+        p2RightArrowAnimator = p2RightArrow.GetComponent<ArrowPulse>();
+
 		Invoke("SetString", Time.deltaTime);
 	}
 
@@ -98,7 +107,7 @@ public class CharacterSelector : MonoBehaviour {
             // code for cycling the characters
             if (p1CanChange && Input.GetKeyDown(input.p1Right) || input.p1leftRight == 1)
             {
-                p1RightArrow.PulseArrow(); // animates the arrow to flash
+                p1RightArrowAnimator.PulseArrow(); // animates the arrow to flash
 				UISFX.instance.UISound(false); // Selection Sound
 
                 switch (p1Character)
@@ -142,7 +151,7 @@ public class CharacterSelector : MonoBehaviour {
             }
 			if (p1CanChange && Input.GetKeyDown(input.p1Left) || input.p1leftRight == -1)
             {
-                p1LeftArrow.PulseArrow(); // arrow flash
+                p1LeftArrowAnimator.PulseArrow(); // arrow flash
 				UISFX.instance.UISound(false); // Selection Sound
 
                 switch (p1Character)
@@ -186,7 +195,7 @@ public class CharacterSelector : MonoBehaviour {
             }
 			if (p2CanChange && Input.GetKeyDown(input.p2Right) || input.p2leftRight == 1)
             {
-                p2RightArrow.PulseArrow(); // arrow flash
+                p2RightArrowAnimator.PulseArrow(); // arrow flash
 				UISFX.instance.UISound(false); // Selection Sound
 
                 switch (p2Character)
@@ -230,7 +239,7 @@ public class CharacterSelector : MonoBehaviour {
             }
 			if (p2CanChange && Input.GetKeyDown(input.p2Left) || input.p2leftRight == -1)
             {
-                p2LeftArrow.PulseArrow(); // arrow flash
+                p2LeftArrowAnimator.PulseArrow(); // arrow flash
 				UISFX.instance.UISound(false); // Selection Sound
 
                 switch (p2Character)
