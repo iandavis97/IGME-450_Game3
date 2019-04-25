@@ -85,7 +85,7 @@ public class Score : MonoBehaviour
         //making score float
         scoreMessage.transform.position = new Vector3(
             player.transform.position.x,
-            player.transform.position.y+1.0f,
+            player.transform.position.y+2.0f,
             player.transform.position.z);
         scoreMessage.text = "+" +score;
         yield return new WaitForSeconds(2f);
