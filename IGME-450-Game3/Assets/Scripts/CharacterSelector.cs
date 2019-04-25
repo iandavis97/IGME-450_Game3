@@ -49,6 +49,8 @@ public class CharacterSelector : MonoBehaviour {
     private bool p1Confirm;
     private bool p2Confirm;
 
+    public Text instructions;
+
 	// Use this for initialization
 	void Start ()
     {
@@ -63,6 +65,12 @@ public class CharacterSelector : MonoBehaviour {
         lights.GetComponent<SpriteRenderer>().color = gray;
 		p1CanChange = true;
 		p2CanChange = true;
+
+		Invoke("SetString", Time.deltaTime);
+	}
+
+	private void SetString() {
+		instructions.text = "Press " + (input.GetSelectString()) + " to confirm";
 	}
 
 	private IEnumerator Cooldown(int player) {
@@ -84,6 +92,7 @@ public class CharacterSelector : MonoBehaviour {
             // code for cycling the characters
             if (Input.GetKeyDown(input.p1Right) || (input.p1leftRight == 1 && p1CanChange))
             {
+				UISFX.instance.UISound(false); // Selection Sound
                 switch (p1Character)
                 {
                     case (Character.Johnny):
@@ -125,6 +134,7 @@ public class CharacterSelector : MonoBehaviour {
             }
 			if (Input.GetKeyDown(input.p1Left) || (input.p1leftRight == -1 && p1CanChange))
             {
+				UISFX.instance.UISound(false); // Selection Sound
                 switch (p1Character)
                 {
                     case (Character.Johnny):
@@ -166,6 +176,7 @@ public class CharacterSelector : MonoBehaviour {
             }
 			if (Input.GetKeyDown(input.p2Right) || (input.p2leftRight == 1 && p2CanChange))
             {
+				UISFX.instance.UISound(false); // Selection Sound
                 switch (p2Character)
                 {
                     case (Character.Johnny):
@@ -207,6 +218,7 @@ public class CharacterSelector : MonoBehaviour {
             }
 			if (Input.GetKeyDown(input.p2Left) || (input.p2leftRight == -1 && p2CanChange))
             {
+				UISFX.instance.UISound(false); // Selection Sound
                 switch (p2Character)
                 {
                     case (Character.Johnny):
@@ -250,10 +262,12 @@ public class CharacterSelector : MonoBehaviour {
             // code to leave character select
             if (Input.GetKeyDown(input.p1loArmAdd) || Input.GetKeyDown(input.p1loArmSub) || Input.GetKeyDown(input.p1upArmAdd) || Input.GetKeyDown(input.p1upArmSub))
             {
+				UISFX.instance.UISound(true); // Confirmation Sound
                 p1Confirm = true;
             }
             if (Input.GetKeyDown(input.p2loArmAdd) || Input.GetKeyDown(input.p2loArmSub) || Input.GetKeyDown(input.p2upArmAdd) || Input.GetKeyDown(input.p2upArmSub))
             {
+				UISFX.instance.UISound(true); // Confirmation Sound
                 p2Confirm = true;
             }
             if (p1Confirm && p2Confirm)

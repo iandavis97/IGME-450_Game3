@@ -246,8 +246,8 @@ public class PlayerControl : MonoBehaviour
                 collision.gameObject.GetComponent<Rigidbody2D>().AddForce(impactForce, ForceMode2D.Impulse); //gives hits some oompf
             }
 			//playing sfx when hit
-            if (!sfx.isPlaying)
-            {
+         //   if (!sfx.isPlaying)
+           // {
                 Score.SetMultiplier(1);
                 // Pitch randomization ranges are different for player one and two.
                 if (this.name == "Player One")
@@ -276,7 +276,7 @@ public class PlayerControl : MonoBehaviour
 					Debug.Log("STRENGTH 2");
                     Score.SetMultiplier(2);
                 }
-            }
+            //}
             //Debug.Log("calling flash on " + collision.gameObject.name);
 				
         }

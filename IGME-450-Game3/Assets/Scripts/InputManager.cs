@@ -24,6 +24,8 @@ public class InputManager : MonoBehaviour {
 
     private bool inGame; // Allows use of InputManager outside of fight
 
+    private string selectString = "";
+
     // Grab a reference to the text piece for controls.
     // If Xbox One controller(s) are connected, detect them and override the keyboard controls.
     private void Awake() {
@@ -48,18 +50,28 @@ public class InputManager : MonoBehaviour {
 			controls.text += ControlString(p1upArmAdd, p1upArmSub, p1loArmAdd, p1loArmSub, p1Left, p1Right);
 			controls.text += "\n\nPlayer 2";
 			controls.text += ControlString(p2upArmAdd, p2upArmSub, p2loArmAdd, p2loArmSub, p2Left, p2Right);
+			selectString += "\nP1: " + p1upArmAdd.ToString() + " / " + p1upArmSub.ToString() + " / " + p1loArmAdd.ToString() + " / " + p1loArmSub.ToString() + "\n";
+			selectString += "P2: " + p2upArmAdd.ToString() + " / " + p2upArmSub.ToString() + " / " + p2loArmAdd.ToString() + " / " + p2loArmSub.ToString() + "\n";
 		} else if (numjoysticks == 1) { // One joystick
 			controls.text = "Player 1";
 			controls.text += ControlStringJS("LB", "LT", "RB", "RT");
 			controls.text += "\n\nPlayer 2";
 			controls.text += ControlString(p2upArmAdd, p2upArmSub, p2loArmAdd, p2loArmSub, p2Left, p2Right);
+			selectString += "\nP1: " +"LB LT RB RT \n";
+			selectString += "P2: " +p2upArmAdd.ToString() + " / " + p2upArmSub.ToString() + " / " + p2loArmAdd.ToString() + " / " + p2loArmSub.ToString() + "\n";
     	} else if (numjoysticks == 2) { // Two joysticks
 			controls.text = "Controls";
 			controls.text += ControlStringJS("LB", "LT", "RB", "RT");
+			selectString += "\nLB LT RB RT\n";
     	}
 
         inGame = false;
     }
+
+
+	public string GetSelectString() {
+		return selectString;
+	}
 
 	private void Update () {
 		// We need to detect joystick inputs before the game starts.
