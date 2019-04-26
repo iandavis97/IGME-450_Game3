@@ -95,9 +95,9 @@ public class Score : MonoBehaviour
         {
             scoreMessage.transform.position = new Vector3(
             scoreMessage.transform.position.x,
-            scoreMessage.transform.position.y + i,
+            scoreMessage.transform.position.y + 0.01f,
             scoreMessage.transform.position.z);
-            yield return new WaitForSeconds(i);
+            yield return new WaitForSeconds(0.02f);
         }
         
         scoreMessage.enabled = false;
