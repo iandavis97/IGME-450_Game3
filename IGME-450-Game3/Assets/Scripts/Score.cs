@@ -106,6 +106,7 @@ public class Score : MonoBehaviour
     	isWon = true;
     	winMessage.enabled = true;
 		UISFX.instance.Bell(2);
+		Jukebox.instance.CallFade();
     	if (p1Score > p2Score) { // P1 has won
     	 	winMessage.text = "PLAYER 1 WINS!";
     	} else { // P2 has won

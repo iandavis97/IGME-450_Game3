@@ -25,4 +25,15 @@ public class Jukebox : MonoBehaviour {
 		audi.loop = true;
 		audi.Play();
 	}
+
+	public void CallFade() {
+		StartCoroutine("Fade");
+	}
+
+	private IEnumerator Fade() {
+		while (audi.volume > 0) {
+			audi.volume -= 0.05f;
+			yield return new WaitForEndOfFrame();
+		}
+	}
 }

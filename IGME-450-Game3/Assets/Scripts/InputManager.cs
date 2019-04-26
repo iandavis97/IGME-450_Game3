@@ -51,22 +51,25 @@ public class InputManager : MonoBehaviour {
 			controls.text += ControlString(p1upArmAdd, p1upArmSub, p1loArmAdd, p1loArmSub, p1Left, p1Right);
 			controls.text += "\n\nPlayer 2";
 			controls.text += ControlString(p2upArmAdd, p2upArmSub, p2loArmAdd, p2loArmSub, p2Left, p2Right);
-			selectString += "\nP1: " + p1upArmSub.ToString() + " - " + p1loArmSub.ToString() + " - BACK\n";
+			selectString += "\nP1: " + p1Left.ToString() + " - " + p1Right.ToString() + " - SCROLL\n";
+			selectString += p1upArmSub.ToString() + " - " + p1loArmSub.ToString() + " - BACK\n";
 			selectString += p1upArmAdd.ToString() + " - " + p1loArmAdd.ToString() + " - CONFIRM\n";
-			selectString += "\nP2: " + p2upArmSub.ToString() + " - " + p2loArmSub.ToString() + " - BACK\n";
+			selectString += "\nP2: " + p2Left.ToString() + " - " + p2Right.ToString() + " - SCROLL\n";
+			selectString += p2upArmSub.ToString() + " - " + p2loArmSub.ToString() + " - BACK\n";
 			selectString += p2upArmAdd.ToString() + " - " + p2loArmAdd.ToString() + " - CONFIRM\n";
 		} else if (numjoysticks == 1) { // One joystick
 			controls.text = "Player 1";
 			controls.text += ControlStringJS("LB", "LT", "RB", "RT");
 			controls.text += "\n\nPlayer 2";
 			controls.text += ControlString(p2upArmAdd, p2upArmSub, p2loArmAdd, p2loArmSub, p2Left, p2Right);
-			selectString += "\nP1: " + "LT - RT - CONFIRM\n LB - RB - BACK\n";
-			selectString += "\nP2: " + p2upArmSub.ToString() + " - " + p2loArmSub.ToString() + " - BACK\n";
+			selectString += "\nP1: " + "LB - RB - CONFIRM\n LT - RT - BACK\n";
+			selectString += "\nP2: " + p2Left.ToString() + " - " + p2Right.ToString() + " - SCROLL\n";
+			selectString += p2upArmSub.ToString() + " - " + p2loArmSub.ToString() + " - BACK\n";
 			selectString += p2upArmAdd.ToString() + " - " + p2loArmAdd.ToString() + " - CONFIRM\n";
     	} else if (numjoysticks == 2) { // Two joysticks
 			controls.text = "Controls";
 			controls.text += ControlStringJS("LB", "LT", "RB", "RT");
-			selectString += "\nLT - RT - CONFIRM\n LB - RB - BACK\n";
+			selectString += "\nLB - RB - CONFIRM\n LT - RT - BACK\n";
     	}
 
         inGame = false;
@@ -81,14 +84,14 @@ public class InputManager : MonoBehaviour {
 		// We need to detect joystick inputs before the game starts.
 		p1leftRight = Input.GetAxis("P1X");
 		p2leftRight = -Input.GetAxis("P2X"); // Inverted due to -x scale
-        // only happen if in-game
-        if (inGame)
-        {
-            // For controllers, read the axis-based input.
+		// For controllers, read the axis-based input.
             p1upArmSubf = Input.GetAxis("P1Fire1");
             p1loArmSubf = Input.GetAxis("P1Fire2");
             p2upArmSubf = Input.GetAxis("P2Fire1");
             p2loArmSubf = Input.GetAxis("P2Fire2");
+        // only happen if in-game
+        if (inGame)
+        {
 
                                                  // Player 1 Controls.
             if (Input.GetKey(p1upArmAdd))

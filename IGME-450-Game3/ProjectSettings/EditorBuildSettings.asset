@@ -23,7 +23,7 @@ EditorBuildSettings:
   - enabled: 0
     path: 
     guid: 00000000000000000000000000000000
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/loss.unity
     guid: 9c119ea0e8fca1f4d869c1c1b0a49498
   - enabled: 1
