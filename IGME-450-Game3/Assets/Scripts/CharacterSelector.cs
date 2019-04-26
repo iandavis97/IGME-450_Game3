@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-enum Character { Johnny, Jonathan, Lobster };
+enum Character { Johnny, Jonathan, Lobster, Fishman };
 
 public class CharacterSelector : MonoBehaviour {
 
@@ -37,6 +37,7 @@ public class CharacterSelector : MonoBehaviour {
     public Sprite[] JB; // Johnny Bravo
     public Sprite[] JC; // Jonathan Congratulations
 	public Sprite[] LS; // Lobster
+    public Sprite[] FM; // Fishman
 
     // these arrays contain the images presenting the player on-screen
     public GameObject[] p1;
@@ -129,17 +130,27 @@ public class CharacterSelector : MonoBehaviour {
                                 p1[i].GetComponent<Image>().sprite = LS[i];
                             }
                             p1Character++;
-						StartCoroutine(Cooldown(1));
+						    StartCoroutine(Cooldown(1));
                             break;
                         }
                     case (Character.Lobster):
                         {
                             for (int i = 0; i < 5; i++)
                             {
+                                p1[i].GetComponent<Image>().sprite = FM[i];
+                            }
+                            p1Character++;
+					        StartCoroutine(Cooldown(1));
+                            break;
+                        }
+                    case (Character.Fishman):
+                        {
+                            for (int i = 0; i < 5; i++)
+                            {
                                 p1[i].GetComponent<Image>().sprite = JB[i];
                             }
                             p1Character++;
-						StartCoroutine(Cooldown(1));
+                            StartCoroutine(Cooldown(1));
                             break;
                         }
                     default:
@@ -147,7 +158,7 @@ public class CharacterSelector : MonoBehaviour {
                             break;
                         }
                 }
-                if (p1Character > Character.Lobster) { p1Character = Character.Johnny; }
+                if (p1Character > Character.Fishman) { p1Character = Character.Johnny; }
             }
 			if (p1CanChange && Input.GetKeyDown(input.p1Left) || input.p1leftRight == -1)
             {
@@ -160,7 +171,7 @@ public class CharacterSelector : MonoBehaviour {
                         {
                             for (int i = 0; i < 5; i++)
                             {
-                                p1[i].GetComponent<Image>().sprite = LS[i];
+                                p1[i].GetComponent<Image>().sprite = FM[i];
                             }
                             p1Character--;
 						StartCoroutine(Cooldown(1));
@@ -186,12 +197,22 @@ public class CharacterSelector : MonoBehaviour {
 						StartCoroutine(Cooldown(1));
                             break;
                         }
+                    case (Character.Fishman):
+                        {
+                            for (int i = 0; i < 5; i++)
+                            {
+                                p1[i].GetComponent<Image>().sprite = LS[i];
+                            }
+                            p1Character--;
+                            StartCoroutine(Cooldown(1));
+                            break;
+                        }
                     default:
                         {
                             break;
                         }
                 }
-                if (p1Character < Character.Johnny) { p1Character = Character.Lobster; }
+                if (p1Character < Character.Johnny) { p1Character = Character.Fishman; }
             }
 			if (p2CanChange && Input.GetKeyDown(input.p2Right) || input.p2leftRight == 1)
             {
@@ -224,10 +245,20 @@ public class CharacterSelector : MonoBehaviour {
                         {
                             for (int i = 0; i < 5; i++)
                             {
-                                p2[i].GetComponent<Image>().sprite = JB[i];
+                                p2[i].GetComponent<Image>().sprite = FM[i];
                             }
                             p2Character++;
 						StartCoroutine(Cooldown(2));
+                            break;
+                        }
+                    case (Character.Fishman):
+                        {
+                            for (int i = 0; i < 5; i++)
+                            {
+                                p2[i].GetComponent<Image>().sprite = JB[i];
+                            }
+                            p2Character++;
+                            StartCoroutine(Cooldown(1));
                             break;
                         }
                     default:
@@ -235,7 +266,7 @@ public class CharacterSelector : MonoBehaviour {
                             break;
                         }
                 }
-                if (p2Character > Character.Lobster) { p2Character = Character.Johnny; }
+                if (p2Character > Character.Fishman) { p2Character = Character.Johnny; }
             }
 			if (p2CanChange && Input.GetKeyDown(input.p2Left) || input.p2leftRight == -1)
             {
@@ -248,7 +279,7 @@ public class CharacterSelector : MonoBehaviour {
                         {
                             for (int i = 0; i < 5; i++)
                             {
-                                p2[i].GetComponent<Image>().sprite = LS[i];
+                                p2[i].GetComponent<Image>().sprite = FM[i];
                             }
                             p2Character--;
 						StartCoroutine(Cooldown(2));
@@ -274,12 +305,22 @@ public class CharacterSelector : MonoBehaviour {
 						StartCoroutine(Cooldown(2));
                             break;
                         }
+                    case (Character.Fishman):
+                        {
+                            for (int i = 0; i < 5; i++)
+                            {
+                                p2[i].GetComponent<Image>().sprite = LS[i];
+                            }
+                            p2Character--;
+                            StartCoroutine(Cooldown(1));
+                            break;
+                        }
                     default:
                         {
                             break;
                         }
                 }
-                if (p2Character < Character.Johnny) { p2Character = Character.Lobster; }
+                if (p2Character < Character.Johnny) { p2Character = Character.Fishman; }
             }
 
             // allow the players to back out of a confirmed character
