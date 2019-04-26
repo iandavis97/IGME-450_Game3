@@ -217,7 +217,7 @@ public class CharacterSelector : MonoBehaviour {
                 }
                 if (p1Character < Character.Johnny) { p1Character = Character.Fishman; }
             }
-			if (p2CanChange && && !p1Confirm (Input.GetKeyDown(input.p2Right) || input.p2leftRight == 1))
+			if (p2CanChange && !p1Confirm && (Input.GetKeyDown(input.p2Right) || input.p2leftRight == 1))
             {
                 p2RightArrowAnimator.PulseArrow(); // arrow flash
 				UISFX.instance.UISound(false); // Selection Sound
