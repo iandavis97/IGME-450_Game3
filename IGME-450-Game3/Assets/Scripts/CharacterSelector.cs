@@ -54,6 +54,7 @@ public class CharacterSelector : MonoBehaviour {
     // to make input taking quick
     private InputManager input;
 
+    [SerializeField]
     private bool p1CanChange = true, p2CanChange = true;
 
     // for leaving character select
@@ -90,6 +91,7 @@ public class CharacterSelector : MonoBehaviour {
 	}
 
 	private IEnumerator Cooldown(int player) {
+		Debug.Log("Cooldown");
 		if (player == 1) {
 			p1CanChange = false;
 		} else {
@@ -106,7 +108,8 @@ public class CharacterSelector : MonoBehaviour {
         if (CharacterSelect.GetComponent<Canvas>().enabled)
         {
             // code for cycling the characters
-            if (p1CanChange && !p1Confirm && Input.GetKeyDown(input.p1Right) || input.p1leftRight == 1)
+
+            if (p1CanChange && !p1Confirm && (Input.GetKeyDown(input.p1Right) || input.p1leftRight == 1))
             {
                 p1RightArrowAnimator.PulseArrow(); // animates the arrow to flash
 				UISFX.instance.UISound(false); // Selection Sound
@@ -160,7 +163,7 @@ public class CharacterSelector : MonoBehaviour {
                 }
                 if (p1Character > Character.Fishman) { p1Character = Character.Johnny; }
             }
-			if (p1CanChange && !p1Confirm && Input.GetKeyDown(input.p1Left) || input.p1leftRight == -1)
+			if (p1CanChange && !p1Confirm && (Input.GetKeyDown(input.p1Left) || input.p1leftRight == -1))
             {
                 p1LeftArrowAnimator.PulseArrow(); // arrow flash
 				UISFX.instance.UISound(false); // Selection Sound
@@ -214,7 +217,7 @@ public class CharacterSelector : MonoBehaviour {
                 }
                 if (p1Character < Character.Johnny) { p1Character = Character.Fishman; }
             }
-			if (p2CanChange && !p1Confirm && Input.GetKeyDown(input.p2Right) || input.p2leftRight == 1)
+			if (p2CanChange && && !p1Confirm (Input.GetKeyDown(input.p2Right) || input.p2leftRight == 1))
             {
                 p2RightArrowAnimator.PulseArrow(); // arrow flash
 				UISFX.instance.UISound(false); // Selection Sound
@@ -268,7 +271,7 @@ public class CharacterSelector : MonoBehaviour {
                 }
                 if (p2Character > Character.Fishman) { p2Character = Character.Johnny; }
             }
-			if (p2CanChange && !p1Confirm && Input.GetKeyDown(input.p2Left) || input.p2leftRight == -1)
+			if (p2CanChange && !p1Confirm && (Input.GetKeyDown(input.p2Left) || input.p2leftRight == -1))
             {
                 p2LeftArrowAnimator.PulseArrow(); // arrow flash
 				UISFX.instance.UISound(false); // Selection Sound
