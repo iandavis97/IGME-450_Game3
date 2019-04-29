@@ -97,7 +97,7 @@ public class Score : MonoBehaviour
             scoreMessage.transform.position.x,
             scoreMessage.transform.position.y + 0.01f,
             scoreMessage.transform.position.z);
-            yield return new WaitForSeconds(0.02f);
+            yield return new WaitForSeconds(0.01f);
         }
         
         scoreMessage.enabled = false;

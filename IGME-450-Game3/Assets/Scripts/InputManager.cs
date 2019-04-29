@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI; // For displaying the text string for controls.
+using UnityEngine.SceneManagement;
 
 public class InputManager : MonoBehaviour {
 
@@ -9,6 +10,7 @@ public class InputManager : MonoBehaviour {
 	public KeyCode p1upArmAdd, p1upArmSub, p1loArmAdd, p1loArmSub, p1Left, p1Right, p2upArmAdd, p2upArmSub, p2loArmAdd, p2loArmSub, p2Left, p2Right; // Note: p1upArmAdd and p1loArmAdd (and p2 variants) are buttons to leave character select.
 	[SerializeField]
 	public float p1upArmSubf, p1loArmSubf, p1leftRight, p2upArmSubf, p2loArmSubf, p2leftRight; // Use floats to express axis-based input.
+	public KeyCode start, quit, start2, quit2; // Start2 and Quit2 are for the second player controller.
 	public PlayerControl p1, p2; // PlayerControl objects for respective players.
 
 	public Text controls; // Text on the UI that prints out the controls.
@@ -35,10 +37,14 @@ public class InputManager : MonoBehaviour {
     		numjoysticks = 1;
     		p1upArmAdd = KeyCode.Joystick1Button4;
 			p1loArmAdd = KeyCode.Joystick1Button5;
+			quit = KeyCode.Joystick1Button1;
+			start = KeyCode.Joystick1Button0;
 			if (joysticks.Length > 1) { // Connect the second joystick.
 				numjoysticks = 2;
 				p2upArmAdd = KeyCode.Joystick2Button4;
 				p2loArmAdd = KeyCode.Joystick2Button5;
+				quit2 = KeyCode.Joystick2Button1;
+				start2 = KeyCode.Joystick2Button0;
 			}
     	}
     }
@@ -57,6 +63,7 @@ public class InputManager : MonoBehaviour {
 			selectString += "\nP2: " + p2Left.ToString() + " - " + p2Right.ToString() + " - SCROLL\n";
 			selectString += p2upArmSub.ToString() + " - " + p2loArmSub.ToString() + " - BACK\n";
 			selectString += p2upArmAdd.ToString() + " - " + p2loArmAdd.ToString() + " - CONFIRM\n";
+			selectString += "ESC TO QUIT";
 		} else if (numjoysticks == 1) { // One joystick
 			controls.text = "Player 1";
 			controls.text += ControlStringJS("LB", "LT", "RB", "RT");
@@ -66,12 +73,13 @@ public class InputManager : MonoBehaviour {
 			selectString += "\nP2: " + p2Left.ToString() + " - " + p2Right.ToString() + " - SCROLL\n";
 			selectString += p2upArmSub.ToString() + " - " + p2loArmSub.ToString() + " - BACK\n";
 			selectString += p2upArmAdd.ToString() + " - " + p2loArmAdd.ToString() + " - CONFIRM\n";
+			selectString += "ESC OR B BUTTON TO QUIT";
     	} else if (numjoysticks == 2) { // Two joysticks
 			controls.text = "Controls";
 			controls.text += ControlStringJS("LB", "LT", "RB", "RT");
 			selectString += "\nLB - RB - CONFIRM\n LT - RT - BACK\n";
+			selectString += "B BUTTON TO QUIT";
     	}
-
         inGame = false;
     }
 
@@ -89,6 +97,12 @@ public class InputManager : MonoBehaviour {
             p1loArmSubf = Input.GetAxis("P1Fire2");
             p2upArmSubf = Input.GetAxis("P2Fire1");
             p2loArmSubf = Input.GetAxis("P2Fire2");
+        // Detect input for quitting and starting the game on the title screen.
+		if ((Input.GetKeyDown(quit) || Input.GetKeyDown(quit2)) && SceneManager.GetActiveScene().name.Equals("MainMenu")) {
+			Application.Quit();
+		} else if ((Input.GetKeyDown(start) || Input.GetKeyDown(start2)) && SceneManager.GetActiveScene().name.Equals("MainMenu")) {
+			SceneManager.LoadScene("2Players");
+		}
         // only happen if in-game
         if (inGame)
         {

@@ -138,6 +138,7 @@ public class PlayerControl : MonoBehaviour
         if (neckJoint == null && !decapitated) {
         	Decapitate();
         }
+        sfx.panStereo = (legs.transform.position.x / 2.5f);
     }
 
     // Plays a sound and flips on the boolean for decapitation.
