@@ -1738,7 +1738,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29b2d74a51e95bc4f8e476b545e15126, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  charSelect: {fileID: 8300000, guid: 86f2fa41dcbc83a4fbd7ea5bb8823ff4, type: 3}
+  charSelect: {fileID: 8300000, guid: e57bf6c42b998c14c8c19d4d326ecab4, type: 3}
   music:
   - {fileID: 8300000, guid: 891758ac3de634c48aec71133fdf250c, type: 3}
   - {fileID: 8300000, guid: 60036460c6d0ada45bb660d32fc81e9f, type: 3}
