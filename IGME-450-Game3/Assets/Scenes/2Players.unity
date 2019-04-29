@@ -1582,6 +1582,10 @@ MonoBehaviour:
   p2upArmSubf: 0
   p2loArmSubf: 0
   p2leftRight: 0
+  start: 13
+  quit: 27
+  start2: 13
+  quit2: 27
   p1: {fileID: 107089389}
   p2: {fileID: 987705840}
   controls: {fileID: 1982475375}

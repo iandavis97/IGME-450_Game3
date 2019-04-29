@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 enum Character { Johnny, Jonathan, Lobster, Fishman };
 
@@ -367,6 +368,10 @@ public class CharacterSelector : MonoBehaviour {
                     p2[i].GetComponent<Image>().color = Color.gray;
                 }
             }
+            // Section for quitting to the title screen
+			if (Input.GetKeyDown(input.quit) || Input.GetKeyDown(input.quit2)) {
+				SceneManager.LoadScene("MainMenu");
+			}
             if (p1Confirm && p2Confirm)
             {
                 // deactivates character select and activates in-game ui
