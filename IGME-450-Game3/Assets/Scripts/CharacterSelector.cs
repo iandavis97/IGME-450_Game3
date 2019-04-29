@@ -108,7 +108,8 @@ public class CharacterSelector : MonoBehaviour {
         if (CharacterSelect.GetComponent<Canvas>().enabled)
         {
             // code for cycling the characters
-            if (p1CanChange && (Input.GetKeyDown(input.p1Right) || input.p1leftRight == 1))
+
+            if (p1CanChange && !p1Confirm && (Input.GetKeyDown(input.p1Right) || input.p1leftRight == 1))
             {
                 p1RightArrowAnimator.PulseArrow(); // animates the arrow to flash
 				UISFX.instance.UISound(false); // Selection Sound
@@ -162,7 +163,7 @@ public class CharacterSelector : MonoBehaviour {
                 }
                 if (p1Character > Character.Fishman) { p1Character = Character.Johnny; }
             }
-			if (p1CanChange && (Input.GetKeyDown(input.p1Left) || input.p1leftRight == -1))
+			if (p1CanChange && !p1Confirm && (Input.GetKeyDown(input.p1Left) || input.p1leftRight == -1))
             {
                 p1LeftArrowAnimator.PulseArrow(); // arrow flash
 				UISFX.instance.UISound(false); // Selection Sound
@@ -216,7 +217,7 @@ public class CharacterSelector : MonoBehaviour {
                 }
                 if (p1Character < Character.Johnny) { p1Character = Character.Fishman; }
             }
-			if (p2CanChange && (Input.GetKeyDown(input.p2Right) || input.p2leftRight == 1))
+			if (p2CanChange && !p2Confirm && (Input.GetKeyDown(input.p2Right) || input.p2leftRight == 1))
             {
                 p2RightArrowAnimator.PulseArrow(); // arrow flash
 				UISFX.instance.UISound(false); // Selection Sound
@@ -270,7 +271,7 @@ public class CharacterSelector : MonoBehaviour {
                 }
                 if (p2Character > Character.Fishman) { p2Character = Character.Johnny; }
             }
-			if (p2CanChange && (Input.GetKeyDown(input.p2Left) || input.p2leftRight == -1))
+			if (p2CanChange && !p2Confirm && (Input.GetKeyDown(input.p2Left) || input.p2leftRight == -1))
             {
                 p2LeftArrowAnimator.PulseArrow(); // arrow flash
 				UISFX.instance.UISound(false); // Selection Sound
@@ -329,7 +330,7 @@ public class CharacterSelector : MonoBehaviour {
 			if (p1Confirm && (Input.GetKeyDown(input.p1loArmSub) || Input.GetKeyDown(input.p1upArmSub) || input.p1loArmSubf >= 0.9f || input.p1upArmSubf >= 0.9f))
             {
                 p1Confirm = false;
-                p1CanChange = true;
+                //p1CanChange = true;
                 for (int i = 0; i < 5; i++)
                 {
                     p1[i].GetComponent<Image>().color = Color.white;
@@ -338,7 +339,7 @@ public class CharacterSelector : MonoBehaviour {
 			if (p2Confirm && (Input.GetKeyDown(input.p2loArmSub) || Input.GetKeyDown(input.p2upArmSub) || input.p2loArmSubf >= 0.9f || input.p2upArmSubf >= 0.9f))
             {
                 p2Confirm = false;
-                p2CanChange = true;
+                //p2CanChange = true;
                 for (int i = 0; i < 5; i++)
                 {
                     p2[i].GetComponent<Image>().color = Color.white;
@@ -350,7 +351,7 @@ public class CharacterSelector : MonoBehaviour {
             {
 				UISFX.instance.UISound(true); // Confirmation Sound
                 p1Confirm = true;
-                p1CanChange = false;
+                //p1CanChange = false;
                 for (int i = 0; i < 5; i++)
                 {
                     p1[i].GetComponent<Image>().color = Color.gray;
@@ -360,7 +361,7 @@ public class CharacterSelector : MonoBehaviour {
             {
 				UISFX.instance.UISound(true); // Confirmation Sound
                 p2Confirm = true;
-                p2CanChange = false;
+                //p2CanChange = false;
                 for (int i = 0; i < 5; i++)
                 {
                     p2[i].GetComponent<Image>().color = Color.gray;
