@@ -1799,7 +1799,11 @@ MonoBehaviour:
     m_LineSpacing: 1
   m_Text: 'By Cajj, 2019.
 
-    Ryan Beach | Ian Davis | Adam Hall | Malcolm Lambrecht | Jonathan So'
+    Ryan Beach | Ian Davis | Adam Hall | Malcolm Lambrecht | Jonathan So
+
+    <size=15>FONTS-"Edo" by Vic Fieger and "Eraser" by David Rakowski
+
+    SFX-"Kids Cheering " by Gaming Sound FX and "Party-Blower" by Orange Free Sounds</size>'
 --- !u!222 &2005678849
 CanvasRenderer:
   m_ObjectHideFlags: 0
